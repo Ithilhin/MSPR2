@@ -28,8 +28,7 @@ class Image
     #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
     private ?Realisation $realisation = null;
 
-    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
-    private ?User $user = null;
+    
 
     #[ORM\ManyToOne(inversedBy: 'images')]
     private ?prestation $prestation = null;
@@ -104,27 +103,7 @@ class Image
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setImage(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($user !== null && $user->getImage() !== $this) {
-            $user->setImage($this);
-        }
-
-        $this->user = $user;
-
-        return $this;
-    }
+    
 
     public function getPrestation(): ?prestation
     {
