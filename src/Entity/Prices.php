@@ -26,7 +26,7 @@ class Prices
 
     #[ORM\OneToOne(inversedBy: 'prices', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?prestation $prestation = null;
+    private ?Prestation $prestation = null;
 
     public function getId(): ?int
     {
@@ -69,12 +69,12 @@ class Prices
         return $this;
     }
 
-    public function getPrestation(): ?prestation
+    public function getPrestation(): ?Prestation
     {
         return $this->prestation;
     }
 
-    public function setPrestation(prestation $prestation): static
+    public function setPrestation(Prestation $prestation): static
     {
         $this->prestation = $prestation;
 

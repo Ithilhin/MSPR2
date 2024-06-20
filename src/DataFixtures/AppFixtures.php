@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
     {
         $faker = \Faker\Factory::create('fr_FR');
 
-        for ($u = 0; $u < 10; $u++) {
+        for ($u = 0; $u < 100; $u++) {
             $user = new User();
             $hash = $this->encoder->hashPassword($user, 'password');
 

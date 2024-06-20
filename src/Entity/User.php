@@ -2,15 +2,26 @@
 
 namespace App\Entity;
 
+
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+// Configuration de la ressource API
+// #[ApiResource(paginationEnabled: true, paginationItemsPerPage: 50, order: ['email' => 'ASC'])]
 #[ApiResource]
+// #[ApiFilter(SearchFilter::class, properties: ['firstName' => 'partial'])]
+// #[ApiFilter(SearchFilter::class)]
+// #[ApiFilter(OrderFilter::class)]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -49,7 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $description = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?image $picture = null;
+    private ?Image $picture = null;
 
     public function getId(): ?int
     {
@@ -186,12 +197,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPicture(): ?image
+    public function getPicture(): ?Image
     {
         return $this->picture;
     }
 
-    public function setPicture(?image $picture): static
+    public function setPicture(?Image $picture): static
     {
         $this->picture = $picture;
 

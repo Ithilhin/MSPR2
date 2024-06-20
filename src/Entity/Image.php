@@ -33,7 +33,7 @@ class Image
     
 
     #[ORM\ManyToOne(inversedBy: 'images')]
-    private ?prestation $prestation = null;
+    private ?Prestation $prestation = null;
 
     public function getId(): ?int
     {
@@ -107,12 +107,12 @@ class Image
 
     
 
-    public function getPrestation(): ?prestation
+    public function getPrestation(): ?Prestation
     {
         return $this->prestation;
     }
 
-    public function setPrestation(?prestation $prestation): static
+    public function setPrestation(?Prestation $prestation): static
     {
         $this->prestation = $prestation;
 
