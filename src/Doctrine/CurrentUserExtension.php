@@ -10,12 +10,14 @@ use Doctrine\ORM\QueryBuilder;
 use ApiPlatform\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use ApiPlatform\Metadata\Operation;
 use App\Entity\Client;
+use App\Entity\User;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 // Définition de la classe CurrentUserExtension qui implémente deux interfaces pour modifier les requêtes
-class CurrentUserExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface {
-    
+class CurrentUserExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
+{
+
     // Déclaration des propriétés pour la sécurité et la vérification des autorisations
     private $security;
     private $authChecker;
@@ -32,14 +34,20 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface, QueryIt
     {
         $user = $this->security->getUser(); // Récupération de l'utilisateur actuel
         // Vérification si la classe de ressource est Client et si l'utilisateur n'a pas le rôle ADMIN
-        if ($resourceClass === Client::class && !$this->authChecker->isGranted('ROLE_ADMIN')) {
+        if (
+            $resourceClass === Client::class
+            &&
+            !$this->authChecker->isGranted('ROLE_ADMIN')
+            &&
+            $user instanceof User
+        ) {
             $rootAlias = $queryBuilder->getRootAliases()[0]; // Récupération de l'alias racine de la requête
             // Exemple de filtrage par utilisateur, à personnaliser selon les besoins
-            $queryBuilder->andWhere(sprintf('%s.user = :current_user', $rootAlias));
-            $queryBuilder->setParameter('current_user', $user);
+            // $queryBuilder->andWhere(sprintf('%s.user = :current_user', $rootAlias));
+            // $queryBuilder->setParameter('current_user', $user);
             // Exemple de filtrage par id, à personnaliser selon les besoins
-            $queryBuilder->andWhere(sprintf('%s.id = 84', $rootAlias)); // Filtrage par id fixe pour l'exemple
-            
+            // $queryBuilder->andWhere(sprintf('%s.id = 84', $rootAlias)); 
+
         }
     }
 
