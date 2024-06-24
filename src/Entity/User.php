@@ -85,8 +85,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Image $picture = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pictureFileName = null;
 
     public function getId(): ?int
     {
@@ -223,14 +223,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPicture(): ?Image
+    public function getPictureFileName(): ?string
     {
-        return $this->picture;
+        return $this->pictureFileName;
     }
 
-    public function setPicture(?Image $picture): static
+    public function setPictureFileName(?string $pictureFileName): static
     {
-        $this->picture = $picture;
+        $this->pictureFileName = $pictureFileName;
 
         return $this;
     }

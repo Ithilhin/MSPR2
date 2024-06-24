@@ -111,7 +111,6 @@ class AppFixtures extends Fixture
             $i = $p + 1;
             $image->setSrc('presta' . $i . '.jpg');
             $image->setalt("Prestation : " . $prestations[$p]);
-            $image->setCarouselImage(false);
             $image->setTitle("Image prestation " . $i);
             $image->setPrestation($prestation);
             $manager->persist($image);
@@ -160,18 +159,9 @@ class AppFixtures extends Fixture
             $realisation->setTitle("test");
             $realisation->setText("test");
             $realisation->setActive(FALSE);
-            
-            // // Setup Images
-            $image = new Image();
-            $i = $r + 1;
-            $image->setSrc('rea' . $i . '.jpg');
-            $image->setalt("Realisation : " . $i);
-            $image->setCarouselImage(false);
-            $image->setTitle("Image réalisation " . $i);
-            $image->setPrestation(NULL);
-            $manager->persist($image);
-
-            $realisation->setImage($image);
+            $i=$r+1;
+            $realisation->setImageFileName('rea' . $i . '.jpg');
+           
             $manager->persist($realisation);
         }
 

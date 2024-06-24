@@ -25,9 +25,10 @@ class Realisation
     #[ORM\Column]
     private ?bool $active = null;
 
-    #[ORM\OneToOne(inversedBy: 'realisation', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Image $image = null;
+    #[ORM\Column(length: 255)]
+    private ?string $imageFileName = null;
+
+    
 
     
     public function getId(): ?int
@@ -71,15 +72,17 @@ class Realisation
         return $this;
     }
 
-    public function getImage(): ?Image
+    public function getImageFileName(): ?string
     {
-        return $this->image;
+        return $this->imageFileName;
     }
 
-    public function setImage(Image $image): static
+    public function setImageFileName(string $imageFileName): static
     {
-        $this->image = $image;
+        $this->imageFileName = $imageFileName;
 
         return $this;
     }
+
+    
 }

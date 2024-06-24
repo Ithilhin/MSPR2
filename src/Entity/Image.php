@@ -25,10 +25,6 @@ class Image
     #[Groups(['image_read'])]
     private ?string $alt = null;
 
-    #[ORM\Column]
-    #[Groups(['image_read'])]
-    private ?bool $carouselImage = null;
-
     #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
     private ?Realisation $realisation = null;
 
@@ -76,34 +72,12 @@ class Image
         return $this;
     }
 
-    public function isCarouselImage(): ?bool
-    {
-        return $this->carouselImage;
-    }
-
-    public function setCarouselImage(bool $carouselImage): static
-    {
-        $this->carouselImage = $carouselImage;
-
-        return $this;
-    }
-
     public function getRealisation(): ?Realisation
     {
         return $this->realisation;
     }
 
-    public function setRealisation(Realisation $realisation): static
-    {
-        // set the owning side of the relation if necessary
-        if ($realisation->getImage() !== $this) {
-            $realisation->setImage($this);
-        }
-
-        $this->realisation = $realisation;
-
-        return $this;
-    }
+    
 
     
 

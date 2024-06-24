@@ -45,9 +45,6 @@ class ImageCrudController extends AbstractCrudController
             TextField::new('alt')
                 ->setLabel('description alternative')
                 ->setHelp("description alternative de l'image pour l'accessibilité"),
-            BooleanField::new('carouselimage')
-                ->setLabel("Caroussel page d'acceuil")
-                ->setHelp("Afficher l'image dans le carroussel de la page d\'acceuil"),
             ImageField::new('src')
                 ->setLabel('Image')
                 ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')

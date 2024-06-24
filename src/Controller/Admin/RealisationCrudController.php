@@ -41,7 +41,7 @@ class RealisationCrudController extends AbstractCrudController
             return [
                 // TODO afficher l'image plutot que le lien
                 
-                AssociationField::new('image')->setLabel('Photographie associée à la réalisation'),
+                
                 TextField::new('title')->setLabel('Titre')->setHelp('Type de réalisation'),
                 TextEditorField::new('text')->setLabel('Description')->setHelp('Description de la réalisation effectuée'),
                 BooleanField::new('active')->setLabel('active')->setHelp("Afficher la réalisation sur la page d'acceuil"),
