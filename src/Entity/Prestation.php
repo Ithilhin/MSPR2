@@ -21,7 +21,7 @@ class Prestation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['prestations_read','prices_read'])]
+    #[Groups(['prestations_read','prices_read','image_read'])]
     private ?string $title = null;
 
     #[ORM\OneToOne(mappedBy: 'prestation', cascade: ['persist', 'remove'])]
@@ -36,6 +36,11 @@ class Prestation
     public function __construct()
     {
         $this->images = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->title;
     }
 
     public function getId(): ?int

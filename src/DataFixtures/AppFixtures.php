@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Client;
 use App\Entity\Contact;
+use App\Entity\Image;
 use App\Entity\Prestation;
 use App\Entity\Prices;
 use App\Entity\User;
@@ -28,7 +29,7 @@ class AppFixtures extends Fixture
     {
         $faker = \Faker\Factory::create('fr_FR');
 
-        for ($u = 0; $u < 100; $u++) {
+        for ($u = 0; $u < 10; $u++) {
             $user = new User();
             $hash = $this->encoder->hashPassword($user, 'password');
 
@@ -41,12 +42,16 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        for ($c = 0; $c < 10; $c++) {
+        for ($c = 0; $c < 3; $c++) {
             $client = new Client();
             $client->setActive(true);
-            $client->setType($faker->randomElement(['particulier', 'professionnel', 'collectivité']));
+            $type=[
+                'particulier',
+                'professionnel',
+                'collectivité'];
+            $client->setType($type[$c]);
             $client->setDescription($faker->realText(
-                $maxNbChars = 50,
+                $maxNbChars = 500,
                 $indexSize = 2
             ));
             $manager->persist($client);
@@ -61,7 +66,7 @@ class AppFixtures extends Fixture
             $manager->persist($contact);
         }
 
-        // Setup prestations + Prices
+        // Setup prestations + Prices + images
         for ($p = 0; $p < 5; $p++) {
             $prestation = new Prestation();
             $Price= new Prices();
@@ -74,6 +79,7 @@ class AppFixtures extends Fixture
             $prestation->setTitle($prestations[$p]);
             $manager->persist($prestation);
 
+            // Setup Prices
             $Price->setPrestation($prestation);
             // Generate minPrice
             $minPrice = $faker->randomFloat(2, 10, 100);
@@ -89,7 +95,22 @@ class AppFixtures extends Fixture
             $Price->setMaxPrice($maxPrice);
             $manager->persist($Price);
             
+            // Setup Images
+            $image = new Image();
+            $image->setSrc('https://via.placeholder.com/img.jpg');
+            $image->setalt('Image alt');
+            $image->setCarouselImage(true);
+            $image->setTitle("Image title");
+            $image->setType("jpg");
+            $image->setPrestation($prestation);
+            $manager->persist($image);
         }
+
+        
+
+
+
+
         $manager->flush();
     }
 }

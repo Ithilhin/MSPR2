@@ -5,9 +5,12 @@ namespace App\Entity;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['image_read']],
+)]
 class Image
 {
     #[ORM\Id]
@@ -19,12 +22,14 @@ class Image
     private ?string $src = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['image_read'])]
     private ?string $alt = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
     #[ORM\Column]
+    #[Groups(['image_read'])]
     private ?bool $carouselImage = null;
 
     #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
@@ -33,7 +38,12 @@ class Image
     
 
     #[ORM\ManyToOne(inversedBy: 'images')]
+    #[Groups(['image_read'])]
     private ?Prestation $prestation = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(['image_read'])]
+    private ?string $title = null;
 
     public function getId(): ?int
     {
@@ -115,6 +125,18 @@ class Image
     public function setPrestation(?Prestation $prestation): static
     {
         $this->prestation = $prestation;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
 
         return $this;
     }
