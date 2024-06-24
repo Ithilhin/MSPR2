@@ -4,6 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Client;
 use App\Entity\Contact;
+use App\Entity\Prestation;
+use App\Entity\Prices;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -59,6 +61,25 @@ class AppFixtures extends Fixture
             $manager->persist($contact);
         }
 
+        // Setup prestations + Prices
+        for ($p = 0; $p < 5; $p++) {
+            $prestation = new Prestation();
+            $Price= new Prices();
+            $prestations=[
+                'Conception/Realisation',
+                'Entretien',
+                'Taille',
+                'Elagage/Abattage',
+                'Valorisation'];
+            $prestation->setTitle($prestations[$p]);
+            $manager->persist($prestation);
+            $Price->setPrestation($prestation);
+            $Price->setMinPrice($faker->randomFloat(2, 100, 1000));
+            $Price->setMeanPrice($faker->randomFloat(2, 100, 1000));
+            $Price->setMaxPrice($faker->randomFloat(2, 100, 1000));
+            $manager->persist($Price);
+            
+        }
         $manager->flush();
     }
 }
