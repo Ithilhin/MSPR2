@@ -42,6 +42,11 @@ class Image
     #[Groups(['image_read'])]
     private ?string $title = null;
 
+    public function __toString() {
+        // Return the filename or any other string that represents this object
+        return $this->src;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

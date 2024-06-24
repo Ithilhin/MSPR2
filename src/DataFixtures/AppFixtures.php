@@ -7,6 +7,7 @@ use App\Entity\Contact;
 use App\Entity\Image;
 use App\Entity\Prestation;
 use App\Entity\Prices;
+use App\Entity\Realisation;
 use App\Entity\User;
 use App\Entity\Text;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -110,7 +111,7 @@ class AppFixtures extends Fixture
             $i = $p + 1;
             $image->setSrc('presta' . $i . '.jpg');
             $image->setalt("Prestation : " . $prestations[$p]);
-            $image->setCarouselImage(true);
+            $image->setCarouselImage(false);
             $image->setTitle("Image prestation " . $i);
             $image->setPrestation($prestation);
             $manager->persist($image);
@@ -151,6 +152,27 @@ class AppFixtures extends Fixture
             }
             $text->setPage($page[$i]);
             $manager->persist($text);
+        }
+
+        // Setup réalisations
+        for ($r = 0; $r < 5; $r++) {
+            $realisation = new Realisation();
+            $realisation->setTitle("test");
+            $realisation->setText("test");
+            $realisation->setActive(FALSE);
+            
+            // // Setup Images
+            $image = new Image();
+            $i = $r + 1;
+            $image->setSrc('rea' . $i . '.jpg');
+            $image->setalt("Realisation : " . $i);
+            $image->setCarouselImage(false);
+            $image->setTitle("Image réalisation " . $i);
+            $image->setPrestation(NULL);
+            $manager->persist($image);
+
+            $realisation->setImage($image);
+            $manager->persist($realisation);
         }
 
 

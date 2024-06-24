@@ -5,8 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Realisation;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -37,6 +39,9 @@ class RealisationCrudController extends AbstractCrudController
         public function configureFields(string $pageName): iterable
         {
             return [
+                // TODO afficher l'image plutot que le lien
+                
+                AssociationField::new('image')->setLabel('Photographie associée à la réalisation'),
                 TextField::new('title')->setLabel('Titre')->setHelp('Type de réalisation'),
                 TextEditorField::new('text')->setLabel('Description')->setHelp('Description de la réalisation effectuée'),
                 BooleanField::new('active')->setLabel('active')->setHelp("Afficher la réalisation sur la page d'acceuil"),

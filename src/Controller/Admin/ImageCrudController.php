@@ -39,11 +39,21 @@ class ImageCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title')->setLabel('Titre')->setHelp("Titre de l'image"),
-            TextField::new('alt')->setLabel('description alternative')->setHelp("description alternative de l'image pour l'accessibilité"),
-            BooleanField::new('carouselimage')->setLabel("Caroussel page d'acceuil")->setHelp("Afficher l'image dans le carroussel de la page d\'acceuil"),
-            ImageField::new('src')->setLabel('Image')->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')->setBasePath('/uploads/images')->setUploadDir('public/uploads/images/'),
-            AssociationField::new('prestation')->setLabel("Prestation associée à l'image")
+            TextField::new('title')
+                ->setLabel('Titre')
+                ->setHelp("Titre de l'image"),
+            TextField::new('alt')
+                ->setLabel('description alternative')
+                ->setHelp("description alternative de l'image pour l'accessibilité"),
+            BooleanField::new('carouselimage')
+                ->setLabel("Caroussel page d'acceuil")
+                ->setHelp("Afficher l'image dans le carroussel de la page d\'acceuil"),
+            ImageField::new('src')
+                ->setLabel('Image')
+                ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
+                ->setBasePath('/uploads/images')->setUploadDir('public/uploads/images/'),
+            AssociationField::new('prestation')
+                ->setLabel("Prestation associée à l'image")
         ];
     }
 }
