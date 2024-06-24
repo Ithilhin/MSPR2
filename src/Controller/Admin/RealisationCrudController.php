@@ -39,9 +39,12 @@ class RealisationCrudController extends AbstractCrudController
         public function configureFields(string $pageName): iterable
         {
             return [
-                // TODO afficher l'image plutot que le lien
+                // TODO regler le pb quand on modifie de l'image qui est rouge
                 
-                
+                ImageField::new('imageFileName')
+                    ->setLabel('Photographie')
+                    ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
+                    ->setBasePath('/uploads/images')->setUploadDir('public/uploads/images/'),
                 TextField::new('title')->setLabel('Titre')->setHelp('Type de réalisation'),
                 TextEditorField::new('text')->setLabel('Description')->setHelp('Description de la réalisation effectuée'),
                 BooleanField::new('active')->setLabel('active')->setHelp("Afficher la réalisation sur la page d'acceuil"),

@@ -25,11 +25,6 @@ class Image
     #[Groups(['image_read'])]
     private ?string $alt = null;
 
-    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
-    private ?Realisation $realisation = null;
-
-    
-
     #[ORM\ManyToOne(inversedBy: 'images')]
     #[Groups(['image_read'])]
     private ?Prestation $prestation = null;
@@ -37,6 +32,9 @@ class Image
     #[ORM\Column(length: 255)]
     #[Groups(['image_read'])]
     private ?string $title = null;
+
+    #[ORM\Column]
+    private ?bool $active = null;
 
     public function __toString() {
         // Return the filename or any other string that represents this object
@@ -72,15 +70,6 @@ class Image
         return $this;
     }
 
-    public function getRealisation(): ?Realisation
-    {
-        return $this->realisation;
-    }
-
-    
-
-    
-
     public function getPrestation(): ?Prestation
     {
         return $this->prestation;
@@ -101,6 +90,18 @@ class Image
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): static
+    {
+        $this->active = $active;
 
         return $this;
     }

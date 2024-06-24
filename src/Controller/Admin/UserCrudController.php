@@ -5,12 +5,21 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class UserCrudController extends AbstractCrudController
 {
+    private $authorizationChecker;
+
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker)
+    {
+        $this->authorizationChecker = $authorizationChecker;
+    }
+    
     public static function getEntityFqcn(): string
     {
         return User::class;
@@ -35,12 +44,40 @@ class UserCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        return [
-            TextField::new('firstname')->setLabel('Prénom'),
-            TextField::new('lastname')->setLabel('Nom'),
-            TextField::new('email')->setLabel('Email')->onlyOnIndex(),
-            TextField::new('tel')->setLabel('Téléphone'),
-        ];
+        $fields =[
+            TextField::new('firstname')
+                ->setLabel('Prénom'),
+            TextField::new('lastname')
+                ->setLabel('Nom'),
+            TextField::new('email')
+                ->setLabel('Email')
+                ->onlyOnIndex(),
+            TextField::new('tel')
+                ->setLabel('Téléphone'),
+            ChoiceField::new('roles')
+                ->setLabel('Permissions')
+                ->setChoices(
+                    [
+                        'Utilisateur' => "ROLE_USER",
+                        'Administrateur' => "ROLE_ADMIN",
+                    ])
+                ->allowMultipleChoices()
+                ->setHelp("Les autorisations d'accès de l'utilisateur"),
+                ];
+        if ($this->authorizationChecker->isGranted('ROLE_ADMIN')){  
+            $fields[] = 
+                TextField::new('title')
+                    ->setLabel('Titre')
+                    ->setHelp("Titre de l'utilisateur");
+                TextEditorField::new('description')
+                    ->setLabel('Description')
+                    ->setHelp("Description de l'utilisateur");
+                ImageField::new('pictureFileName')
+                    ->setLabel('Photographie')
+                    ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
+                    ->setBasePath('/uploads/images')->setUploadDir('public/uploads/images/');
+        }
+        return $fields;
     }
     
 }
