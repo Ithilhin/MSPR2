@@ -25,9 +25,6 @@ class Image
     #[Groups(['image_read'])]
     private ?string $alt = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $type = null;
-
     #[ORM\Column]
     #[Groups(['image_read'])]
     private ?bool $carouselImage = null;
@@ -70,18 +67,6 @@ class Image
     public function setAlt(string $alt): static
     {
         $this->alt = $alt;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): static
-    {
-        $this->type = $type;
 
         return $this;
     }
