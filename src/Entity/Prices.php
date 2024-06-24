@@ -5,9 +5,12 @@ namespace App\Entity;
 use App\Repository\PricesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PricesRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['prices_read']],
+)]
 class Prices
 {
     #[ORM\Id]
@@ -16,16 +19,20 @@ class Prices
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['prices_read'])]
     private ?float $minPrice = null;
 
     #[ORM\Column]
+    #[Groups(['prices_read'])]
     private ?float $meanPrice = null;
 
     #[ORM\Column]
+    #[Groups(['prices_read'])]
     private ?float $maxPrice = null;
 
     #[ORM\OneToOne(inversedBy: 'prices', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['prices_read'])]
     private ?Prestation $prestation = null;
 
     public function getId(): ?int

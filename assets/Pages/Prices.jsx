@@ -1,6 +1,15 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 export default function Prices() {
+        const [prices, setPrices] = useState([]);
+
+        useEffect(() => {
+                axios.get('http://localhost:8000/api/pricess')
+                .then(response => response.data["hydra:member"])
+                .then(data => setPrices(data))
+                .catch(error => console.log(error.response))
+        },[])
     return (
         <div className="container d-flex justify-content-center align-items-center row m-auto">
                 <img className="col-12 col-md-8 col-xl-6 mt-3" src="./image/logo-canopees.png" alt="logo Canopées" />
@@ -16,12 +25,14 @@ export default function Prices() {
                                 </tr>
                         </thead>
                         <tbody>
-                                <tr>
-                                        <td>Conception/realisation</td>
-                                        <td className="text-center">12.25€/h</td>
-                                        <td className="text-center">25.25€/h</td>
-                                        <td className="text-center">37.25€/h</td>
+                                {prices.map(price =>   
+                                        <tr key={price.id}>
+                                        <td>{price.prestation.title}</td>
+                                        <td className="text-center">{price.minPrice.toFixed(2).toLocaleString()} €</td>
+                                        <td className="text-center">{price.meanPrice.toFixed(2).toLocaleString()} €</td>
+                                        <td className="text-center">{price.maxPrice.toFixed(2).toLocaleString()} €</td>
                                 </tr>
+                                )}    
                         </tbody>
                 </table>
                 </div>

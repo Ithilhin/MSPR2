@@ -7,9 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PrestationRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['prestations_read']],
+)]
 class Prestation
 {
     #[ORM\Id]
@@ -18,6 +21,7 @@ class Prestation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['prestations_read','prices_read'])]
     private ?string $title = null;
 
     #[ORM\OneToOne(mappedBy: 'prestation', cascade: ['persist', 'remove'])]

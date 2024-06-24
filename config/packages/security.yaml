@@ -39,8 +39,14 @@ security:
   access_control:
     - { path: ^/api/login, roles: PUBLIC_ACCESS }
     - { path: ^/api/clients, roles: PUBLIC_ACCESS }
-    - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/api/contacts, roles: PUBLIC_ACCESS }
+    - { path: ^/api/images, roles: PUBLIC_ACCESS }
+    - { path: ^/api/login_check, roles: PUBLIC_ACCESS }
+    - { path: ^/api/prestations, roles: PUBLIC_ACCESS }
     - { path: ^/api/pricess, roles: PUBLIC_ACCESS }
+    - { path: ^/api/realisations, roles: PUBLIC_ACCESS }
+    - { path: ^/api/texts, roles: PUBLIC_ACCESS }
+    - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY }
     - { path: ^/api, roles: PUBLIC_ACCESS }
       # - { path: ^/admin, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }

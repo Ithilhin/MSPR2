@@ -69,14 +69,24 @@ class AppFixtures extends Fixture
                 'Conception/Realisation',
                 'Entretien',
                 'Taille',
-                'Elagage/Abattage',
+                'Élagage/Abattage',
                 'Valorisation'];
             $prestation->setTitle($prestations[$p]);
             $manager->persist($prestation);
+
             $Price->setPrestation($prestation);
-            $Price->setMinPrice($faker->randomFloat(2, 100, 1000));
-            $Price->setMeanPrice($faker->randomFloat(2, 100, 1000));
-            $Price->setMaxPrice($faker->randomFloat(2, 100, 1000));
+            // Generate minPrice
+            $minPrice = $faker->randomFloat(2, 10, 100);
+            // Generate a temporary meanPrice greater than minPrice
+            $tempMeanPrice = $faker->randomFloat(2, $minPrice, 100);
+            // Ensure meanPrice is strictly between minPrice and maxPrice by adjusting the range for maxPrice generation
+            $maxPrice = $faker->randomFloat(2, $tempMeanPrice + 0.01, 100 + 0.01); // Adding a small value to ensure it's greater
+            // Adjust meanPrice to be strictly between minPrice and maxPrice
+            $meanPrice = ($minPrice + $maxPrice) / 2;
+            // Set the prices
+            $Price->setMinPrice($minPrice);
+            $Price->setMeanPrice($meanPrice);
+            $Price->setMaxPrice($maxPrice);
             $manager->persist($Price);
             
         }
