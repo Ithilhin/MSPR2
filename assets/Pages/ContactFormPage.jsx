@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Fields from "../Components/forms/Fields";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import  postContactMessage from "../Services/contactsAPI";
 
 export default function ContactFormPage() {
   const [contact, setContact] = useState({
@@ -30,10 +31,7 @@ export default function ContactFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/contacts",
-        contact      
-      );
+      const response = await postContactMessage();
       //TODO flash notification success
       navigate("/", { replace: true });
       setErrors({});
