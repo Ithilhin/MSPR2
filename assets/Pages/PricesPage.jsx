@@ -8,7 +8,9 @@ export default function Prices() {
   useEffect(() => {
     getPrices()
     .then((data) => setPrices(data))
+    // TODO notification flash success
     .catch((error) => console.log(error.response));
+    // TODO notification flash error
   }, []);
 
   return (

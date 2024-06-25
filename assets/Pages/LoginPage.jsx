@@ -17,12 +17,13 @@ export default function LoginPage({ onLogin }) {
 
     try {
       await authAPI.authenticate(credentials);
+      // TODO notification flash success
       setError("");
       onLogin(true);
-
       navigate("/admin", { replace: true });
     } catch (error) {
       setError("Les informations fournies ne sont pas correctes");
+      // TODO notification flash error
     }
   };
 

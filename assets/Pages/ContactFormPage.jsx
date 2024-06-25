@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Fields from "../Components/forms/Fields";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import  postContactMessage from "../Services/contactsAPI";
+import postContactMessage from "../Services/contactsAPI";
 
 export default function ContactFormPage() {
   const [contact, setContact] = useState({
@@ -35,14 +34,16 @@ export default function ContactFormPage() {
       //TODO flash notification success
       navigate("/", { replace: true });
       setErrors({});
-    } catch (error) {
-      if(error.response.data.violations){
+    } catch ({ response }) {
+      const { violations } = response.data;
+      if (violations) {
         const apiErrors = {};
-        error.response.data.violations.map(violation => {
-          apiErrors[violation.propertyPath] = violation.message;
+        violations.map(({propertyPath, message}) => {
+          apiErrors[propertyPath] = message;
         });
         setErrors(apiErrors);
-      };
+        // TODO notification flash error
+      }
     }
   };
 
