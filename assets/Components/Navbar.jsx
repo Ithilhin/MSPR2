@@ -51,24 +51,22 @@ export default function Navbar() {
                   Contact
                 </NavLink>
               </li>
+              {/* TODO restreindre l'accés admin + permettre retour sur homepage depuis admin */}
+              <li className="nav-item">
+                <a className="nav-link" href="/admin">
+                  Administration
+                </a>
+              </li>
             </ul>
             {/* TODO: aligner les bouttons */}
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <NavLink to="/register" className="nav-link">
-                  Inscription
-                </NavLink>
-              </li>
               <li className="nav-item">
                 <NavLink to="/login" className="btn btn-success">
                   Connexion
                 </NavLink>
               </li>
               <li className="nav-item">
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-danger"
-                >
+                <button onClick={handleLogout} className="btn btn-danger">
                   Deconnexion
                 </button>
               </li>
