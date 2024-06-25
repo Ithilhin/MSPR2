@@ -6,6 +6,8 @@ import Homepage from './Pages/Homepage';
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import AboutUS from './Pages/AboutUS';
 import Prices from './Pages/Prices';
+import LoginPage from './Pages/LoginPage';
+
 
 export default function App() {
     return (
@@ -13,8 +15,9 @@ export default function App() {
         <Navbar/>
         <main className="container pt-5">
           <Routes>
-            <Route path="/AboutUs" element={<AboutUS/>} />
-            <Route path="/Prices" element={<Prices/>} />
+            <Route path="/login" element={<LoginPage/>} />
+            <Route path="/aboutUs" element={<AboutUS/>} />
+            <Route path="/prices" element={<Prices/>} />
             <Route path="/" element={<Homepage/>} />
           </Routes>
         </main>
