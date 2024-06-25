@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Fields from "../Components/forms/Fields";
 import { useNavigate } from "react-router-dom";
-import postContactMessage from "../Services/contactsAPI";
+import contactsAPI from "../Services/contactsAPI";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 export default function ContactFormPage() {
   const [contact, setContact] = useState({
@@ -30,19 +32,20 @@ export default function ContactFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await postContactMessage();
-      //TODO flash notification success
+      await contactsAPI.postContactMessage(contact);
+      toast.success("Votre message a bien été envoyé");
       navigate("/", { replace: true });
       setErrors({});
-    } catch ({ response }) {
-      const { violations } = response.data;
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+      const { violations } = error.response.data;
       if (violations) {
         const apiErrors = {};
         violations.map(({propertyPath, message}) => {
           apiErrors[propertyPath] = message;
         });
         setErrors(apiErrors);
-        // TODO notification flash error
+        toast.error("Des erreurs dans votre formulaire");
       }
     }
   };

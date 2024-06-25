@@ -8,4 +8,4 @@ function getPrices() {
     .catch((error) => console.log(error.response));
 }
 
-export default  getPrices;
+export default  {getPrices};

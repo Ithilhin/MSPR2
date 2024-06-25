@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import authAPI from "../Services/authAPI";
 import { useNavigate } from "react-router-dom";
 import Fields from "../Components/forms/Fields";
+import { toast } from "react-toastify";
 
 export default function LoginPage({ onLogin }) {
   const [credentials, setCredentials] = useState({
@@ -17,13 +18,13 @@ export default function LoginPage({ onLogin }) {
 
     try {
       await authAPI.authenticate(credentials);
-      // TODO notification flash success
+      toast.success("Vous êtes désormais connecté");
       setError("");
       onLogin(true);
       navigate("/admin", { replace: true });
     } catch (error) {
       setError("Les informations fournies ne sont pas correctes");
-      // TODO notification flash error
+      toast.error("Une erreur est survenue");
     }
   };
 

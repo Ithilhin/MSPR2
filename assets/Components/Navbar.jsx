@@ -1,12 +1,14 @@
 import React from "react";
 import authAPI from "../Services/authAPI";
 import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Navbar({ isAuthenticated, onLogout }) {
   const navigate = useNavigate();
   const handleLogout = () => {
     authAPI.logout();
     onLogout(false);
+    toast.info("Vous êtes déconnecté");
     navigate("/login",{replace:true});
   };
   

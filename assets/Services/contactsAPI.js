@@ -1,7 +1,7 @@
 import axios from "axios";
 
-function postContactMessage(){
-    return axios.post(
+function postContactMessage(contact){
+  return axios.post(
         "http://localhost:8000/api/contacts",
         contact      
       );

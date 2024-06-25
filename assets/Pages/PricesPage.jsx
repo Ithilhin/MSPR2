@@ -1,16 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import getPrices from "../Services/pricesAPI";
+import pricesAPI from "../Services/pricesAPI";
+import { toast } from "react-toastify";
 
 export default function Prices() {
   const [prices, setPrices] = useState([]);
 
   useEffect(() => {
-    getPrices()
-    .then((data) => setPrices(data))
-    // TODO notification flash success
-    .catch((error) => console.log(error.response));
-    // TODO notification flash error
+    pricesAPI.getPrices()
+      .then((data) => setPrices(data))
+      .catch((error) => console.log(error.response)); 
   }, []);
 
   return (
