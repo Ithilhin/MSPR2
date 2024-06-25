@@ -55,11 +55,11 @@ export default function Navbar({ isAuthenticated, onLogout }) {
                   Contact
                 </NavLink>
               </li>
-              <li className="nav-item">
+              {isAuthenticated && <li className="nav-item">
                 <NavLink className="nav-link" to="admin">
                   Administration
                 </NavLink>
-              </li>
+              </li>}
 
             </ul>
             {/* TODO: aligner les bouttons */}

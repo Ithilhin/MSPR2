@@ -1,6 +1,7 @@
 import React, { useState } from "react"; // Import React and the useState hook
 import authAPI from "../Services/authAPI"; // Import the authentication service
 import { useNavigate } from "react-router-dom";
+import Fields from "../Components/forms/Fields";
 
 // Define the LoginPage component
 export default function LoginPage({ onLogin}) {
@@ -30,37 +31,30 @@ export default function LoginPage({ onLogin}) {
     }
   };
 
+  function handleChange (e, param) {
+    setCredentials({ ...credentials, [param]: e.target.value })
+  }
+
   // Render the component
   return (
     <>
       <form onSubmit={handleSubmit}> {/* Form element with onSubmit event handler */}
-        <div className="form-group"> {/* Form group for email */}
-          <label htmlFor="username">Adresse email</label> {/* Label for email input */}
-          <input
-            value={credentials.username} // Controlled input for username
-            onChange={(e) =>
-              setCredentials({ ...credentials, username: e.target.value }) // Update state on input change
-            }
-            type="email" // Specify input type
-            placeholder="Adresse email de connexion" // Input placeholder
-            name="username" // Input name
-            className={"form-control" + (error && " is-invalid")} // Conditional class for input validation
-          />
-          {error && <p className="invalid-feedback">{error}</p>} {/* Display error message if any */}
-        </div>
-        <div className="form-group"> {/* Form group for password */}
-          <label htmlFor="_password">Mot de passe</label> {/* Label for password input */}
-          <input
-            value={credentials.password} // Controlled input for password
-            onChange={(e) =>
-              setCredentials({ ...credentials, password: e.target.value }) // Update state on input change
-            }
-            type="password" // Specify input type
-            placeholder="Mot de passe" // Input placeholder
-            name="password" // Input name
-            className="form-control" // Class for styling
-          />
-        </div>
+        <Fields 
+          label="Adresse email" 
+          name="username" 
+          value={credentials.username} 
+          onChange={(e) => handleChange (e, "username")} 
+          placeholder="Adresse email de connexion" error={error}
+        />
+        
+        <Fields 
+          label="Mot de passe" 
+          name="password" 
+          value={credentials.password} 
+          onChange={(e) => handleChange (e, "password")}
+          placeholder="Mot de passe" error={error}
+        />
+        
         <div className="form-group"> {/* Form group for submit button */}
           <button type="submit" className="btn btn-success">
             Je me connecte {/* Button text */}
