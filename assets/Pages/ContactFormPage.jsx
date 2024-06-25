@@ -4,10 +4,11 @@ import axios from "axios";
 
 export default function ContactFormPage() {
   const [contact, setContact] = useState({
-    lastName: "sdqsd",
-    firstName: "qdqsd",
-    email: "qsdqsd@qsdsd.com",
-    tel: "0236589569",
+    lastName: "",
+    firstName: "",
+    email: "",
+    tel: "",
+    message: "",
   });
 
   const [errors, setErrors] = useState({

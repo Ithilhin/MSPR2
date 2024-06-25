@@ -31,6 +31,7 @@ class AppFixtures extends Fixture
     {
         $faker = \Faker\Factory::create('fr_FR');
 
+        // Setup user
         for ($u = 0; $u < 10; $u++) {
             $user = new User();
             $hash = $this->encoder->hashPassword($user, 'password');
@@ -43,6 +44,7 @@ class AppFixtures extends Fixture
             $user->setRoles(['ROLE_USER']);
             $manager->persist($user);
         }
+
         // Setup clients
         for ($c = 0; $c < 3; $c++) {
             $client = new Client();
@@ -64,15 +66,18 @@ class AppFixtures extends Fixture
                     $client->setDescription("Les <span class='text-custom-violet fw-bold'>collectivités territoriales</span> partenaires de Canopées visent à embellir les espaces publics, améliorant ainsi la qualité de vie des citoyens. Elles privilégient des projets verts durables. <br /> Ces administrations s'engagent dans des initiatives écologiques, cherchant à réduire l'empreinte environnementale à travers des pratiques de gestion durable des espaces verts.<br /> Elles valorisent la collaboration avec Canopées pour son expertise et son engagement envers des solutions respectueuses de l'environnement.");
                     break;
             };
+            
             $manager->persist($client);
         }
 
+        // Setup contacts
         for ($co = 0; $co < 10; $co++) {
             $contact = new Contact();
             $contact->setFirstname($faker->firstName);
             $contact->setLastname($faker->lastName);
             $contact->setEmail($faker->email);
             $contact->setTel($faker->phoneNumber);
+            $contact->setMessage("Bonjour, je suis intéressé par vos services. Pouvez-vous me contacter pour plus d'informations ?");
             $manager->persist($contact);
         }
 
@@ -113,6 +118,7 @@ class AppFixtures extends Fixture
             $image->setalt("Prestation : " . $prestations[$p]);
             $image->setTitle("Image prestation " . $i);
             $image->setPrestation($prestation);
+            $image->setActive(TRUE);
             $manager->persist($image);
         }
         // Setup Texts
@@ -123,6 +129,7 @@ class AppFixtures extends Fixture
             'Tarifs',
             'Contact'
         ];
+
         for ($i = 0; $i < count($page); $i++) {
             $text = new Text();
             switch ($page[$i]) {
@@ -161,14 +168,8 @@ class AppFixtures extends Fixture
             $realisation->setActive(FALSE);
             $i=$r+1;
             $realisation->setImageFileName('rea' . $i . '.jpg');
-           
             $manager->persist($realisation);
         }
-
-
-
-
-
 
         $manager->flush();
     }
