@@ -10,8 +10,10 @@ import LoginPage from './Pages/LoginPage';
 import authAPI from './Services/authAPI';
 import AdminRedirect from './Components/AdminRedirect';
 import ContactFormPage from './Pages/ContactFormPage';
+import axios from 'axios';
 
 authAPI.setup();
+axios.defaults.headers["Content-Type"] = "application/ld+json ";
 
 export default function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated());

@@ -34,6 +34,7 @@ class Contact
     private ?string $tel = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Veuillez saisir un message')]
     private ?string $message = null;
 
     public function getId(): ?int

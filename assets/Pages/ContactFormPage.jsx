@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Fields from "../Components/forms/Fields";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function ContactFormPage() {
   const [contact, setContact] = useState({
@@ -19,6 +20,8 @@ export default function ContactFormPage() {
     message: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
     setContact({ ...contact, [name]: value });
@@ -29,13 +32,10 @@ export default function ContactFormPage() {
     try {
       const response = await axios.post(
         "http://localhost:8000/api/contacts",
-        contact,
-        {
-          headers: {
-            "Content-Type": "application/ld+json",
-          },
-        }
+        contact      
       );
+      //TODO flash notification success
+      navigate("/", { replace: true });
       setErrors({});
     } catch (error) {
       if(error.response.data.violations){
@@ -62,7 +62,7 @@ export default function ContactFormPage() {
       <Fields
         divClassName="col-12 col-md-6"
         name="lastName"
-        label="Nom de famille"
+        label="Nom de famille*"
         placeholder="Votre nom de famille"
         value={contact.lastName}
         onChange={handleChange}
@@ -71,7 +71,7 @@ export default function ContactFormPage() {
       <Fields
         divClassName="col-12 col-md-6"
         name="firstName"
-        label="Prénom"
+        label="Prénom*"
         placeholder="Votre prénom"
         value={contact.firstName}
         onChange={handleChange}
@@ -80,7 +80,7 @@ export default function ContactFormPage() {
       <Fields
         divClassName="col-12 col-md-6"
         name="email"
-        label="Email"
+        label="Email*"
         placeholder="Votre email"
         type="email"
         value={contact.email}
@@ -90,7 +90,7 @@ export default function ContactFormPage() {
       <Fields
         divClassName="col-12 col-md-6"
         name="tel"
-        label="Téléphone"
+        label="Téléphone*"
         placeholder="Votre numéro de téléphone"
         value={contact.tel}
         onChange={handleChange}
@@ -99,7 +99,7 @@ export default function ContactFormPage() {
       <Fields
         divClassName="col-12"
         name="message"
-        label="Message"
+        label="Message*"
         placeholder="Votre message"
         type="textarea"
         value={contact.message}
