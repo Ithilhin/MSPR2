@@ -41,5 +41,18 @@ function setup() {
   }
 }
 
+function isAuthenticated(){
+  const token = window.localStorage.getItem("authToken");
+  if (token) {
+    const { exp: expiration } = jwtDecode(token);
+    if (expiration * 1000 > new Date().getTime()) {
+      return true;
+    }
+    return false;
+  }
+  return false;
+
+}
+
 // Exporting the authenticate function for use in other parts of the application
-export default { authenticate, logout, setup };
+export default { authenticate, logout, setup, isAuthenticated };

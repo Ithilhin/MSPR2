@@ -12,8 +12,7 @@ import authAPI from './Services/authAPI';
 authAPI.setup();
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  console.log(isAuthenticated);
+  const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated());
 
     return (
       <HashRouter>
