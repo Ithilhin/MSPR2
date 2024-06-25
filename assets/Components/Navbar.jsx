@@ -1,5 +1,6 @@
 import React from "react";
 import authAPI from "../Services/authAPI";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const handleLogout = () => {
@@ -25,48 +26,47 @@ export default function Navbar() {
             <ul className="navbar-nav m-auto">
               <li className="nav-item">
                 {/* TODO: inserer logo Canopées */}
-                <a className="nav-link active" href="#">
+                <NavLink className="nav-link active" to="/">
                   IMG CANOPEES
                   <span className="visually-hidden">(current)</span>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="/aboutUs">
                   Qui sommes-nous?
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="/Prestations">
                   Prestations
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="prices">
                   Tarifs
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <NavLink className="nav-link" to="ContactForm">
                   Contact
-                </a>
+                </NavLink>
               </li>
             </ul>
             {/* TODO: aligner les bouttons */}
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <NavLink to="/register" className="nav-link">
                   Inscription
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a href="#" className="btn btn-success">
+                <NavLink to="/login" className="btn btn-success">
                   Connexion
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
                 <button
                   onClick={handleLogout}
-                  href="#"
                   className="btn btn-danger"
                 >
                   Deconnexion
