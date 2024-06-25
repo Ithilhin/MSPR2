@@ -2,9 +2,10 @@ import React from "react";
 import authAPI from "../Services/authAPI";
 import { NavLink } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ isAuthenticated, onLogout}) {
   const handleLogout = () => {
     authAPI.logout();
+    onLogout(false);
   };
 
   return (

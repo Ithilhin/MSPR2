@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import { createRoot } from 'react-dom/client';
 import './styles/app.css';
 import Navbar from './Components/Navbar';
@@ -11,14 +11,16 @@ import authAPI from './Services/authAPI';
 
 authAPI.setup();
 
-
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  console.log(isAuthenticated);
+
     return (
       <HashRouter>
-        <Navbar/>
+        <Navbar isAuthenticated={isAuthenticated} onLogout={setIsAuthenticated}/>
         <main className="container pt-5">
           <Routes>
-            <Route path="/login" element={<LoginPage/>} />
+            <Route path="/login" element={<LoginPage onLogin={setIsAuthenticated}/>} />
             <Route path="/aboutUs" element={<AboutUS/>} />
             <Route path="/prices" element={<Prices/>} />
             <Route path="/" element={<Homepage/>} />

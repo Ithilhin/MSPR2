@@ -3,7 +3,7 @@ import React, { useState } from "react"; // Import React and the useState hook
 import authAPI from "../Services/authAPI"; // Import the authentication service
 
 // Define the LoginPage component
-export default function LoginPage() {
+export default function LoginPage({ onLogin}) {
   // Initialize state for credentials
   const [credentials, setCredentials] = useState({
     username: "",
@@ -20,6 +20,7 @@ export default function LoginPage() {
       // Attempt to authenticate with credentials
       await authAPI.authenticate(credentials);
       setError(""); // Reset error state on successful authentication
+      onLogin(true); // Set isAuthenticated state to true
     } catch (error) {
       // Set error state if authentication fails
       setError("Les informations fournies ne sont pas correctes");
