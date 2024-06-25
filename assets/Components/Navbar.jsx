@@ -36,12 +36,12 @@ export default function Navbar({ isAuthenticated, onLogout }) {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/aboutUs">
+                <NavLink className="nav-link" to="aboutUs">
                   Qui sommes-nous?
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/Prestations">
+                <NavLink className="nav-link" to="prestations">
                   Prestations
                 </NavLink>
               </li>
@@ -55,19 +55,19 @@ export default function Navbar({ isAuthenticated, onLogout }) {
                   Contact
                 </NavLink>
               </li>
-              {/* TODO restreindre l'accés admin + permettre retour sur homepage depuis admin */}
-              {isAuthenticated && <li className="nav-item">
-                <a className="nav-link" href="/admin">
+              <li className="nav-item">
+                <NavLink className="nav-link" to="admin">
                   Administration
-                </a>
-              </li>}
+                </NavLink>
+              </li>
+
             </ul>
             {/* TODO: aligner les bouttons */}
             <ul className="navbar-nav ml-auto">
               {!isAuthenticated && (
                 <li className="nav-item">
                   <NavLink to="/login" className="btn btn-success">
-                    Connexion
+                    Administration
                   </NavLink>
                 </li>
               )}

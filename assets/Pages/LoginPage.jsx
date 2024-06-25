@@ -23,7 +23,7 @@ export default function LoginPage({ onLogin}) {
       setError(""); // Reset error state on successful authentication
       onLogin(true); // Set isAuthenticated state to true
       // Redirect user to home page on successful authentication
-      navigate("/#/",{replace:true});
+      navigate("/admin",{replace:true});
     } catch (error) {
       // Set error state if authentication fails
       setError("Les informations fournies ne sont pas correctes");
