@@ -1,6 +1,6 @@
-import axios from "axios"; // Import axios for making HTTP requests
 import React, { useState } from "react"; // Import React and the useState hook
 import authAPI from "../Services/authAPI"; // Import the authentication service
+import { useNavigate } from "react-router-dom";
 
 // Define the LoginPage component
 export default function LoginPage({ onLogin}) {
@@ -12,15 +12,18 @@ export default function LoginPage({ onLogin}) {
 
   // Initialize state for error messages
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
   // Define the handleSubmit function for form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
+    
     try {
       // Attempt to authenticate with credentials
       await authAPI.authenticate(credentials);
       setError(""); // Reset error state on successful authentication
       onLogin(true); // Set isAuthenticated state to true
+      // Redirect user to home page on successful authentication
+      navigate("/#/",{replace:true});
     } catch (error) {
       // Set error state if authentication fails
       setError("Les informations fournies ne sont pas correctes");

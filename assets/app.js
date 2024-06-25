@@ -12,14 +12,14 @@ import authAPI from './Services/authAPI';
 authAPI.setup();
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated());
+    const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated());
 
     return (
       <HashRouter>
         <Navbar isAuthenticated={isAuthenticated} onLogout={setIsAuthenticated}/>
         <main className="container pt-5">
           <Routes>
-            <Route path="/login" element={<LoginPage onLogin={setIsAuthenticated}/>} />
+            <Route path="/login" element={<LoginPage onLogin={setIsAuthenticated} />} />
             <Route path="/aboutUs" element={<AboutUS/>} />
             <Route path="/prices" element={<Prices/>} />
             <Route path="/" element={<Homepage/>} />
