@@ -1,15 +1,16 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import pricesAPI from "../Services/pricesAPI";
-import { toast } from "react-toastify";
+import TableLoader from "../Components/loaders/TableLoader";
 
 export default function Prices() {
   const [prices, setPrices] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     pricesAPI.getPrices()
       .then((data) => setPrices(data))
       .catch((error) => console.log(error.response)); 
+    setLoading(false);
   }, []);
 
   return (
@@ -30,7 +31,7 @@ export default function Prices() {
               <th className="text-center">Prix maximum/h</th>
             </tr>
           </thead>
-          <tbody>
+          {!loading && <tbody>
             {prices.map((price, index) => (
               <tr key={index}>
                 <td>{price.prestation.title}</td>
@@ -45,8 +46,9 @@ export default function Prices() {
                 </td>
               </tr>
             ))}
-          </tbody>
+          </tbody>}
         </table>
+        {loading && <TableLoader />}
       </div>
     </div>
   );
