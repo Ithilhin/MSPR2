@@ -2,7 +2,7 @@ import React from "react";
 import authAPI from "../Services/authAPI";
 import { NavLink } from "react-router-dom";
 
-export default function Navbar({ isAuthenticated, onLogout}) {
+export default function Navbar({ isAuthenticated, onLogout }) {
   const handleLogout = () => {
     authAPI.logout();
     onLogout(false);
@@ -53,24 +53,28 @@ export default function Navbar({ isAuthenticated, onLogout}) {
                 </NavLink>
               </li>
               {/* TODO restreindre l'accés admin + permettre retour sur homepage depuis admin */}
-              <li className="nav-item">
+              {isAuthenticated && <li className="nav-item">
                 <a className="nav-link" href="/admin">
                   Administration
                 </a>
-              </li>
+              </li>}
             </ul>
             {/* TODO: aligner les bouttons */}
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <NavLink to="/login" className="btn btn-success">
-                  Connexion
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <button onClick={handleLogout} className="btn btn-danger">
-                  Deconnexion
-                </button>
-              </li>
+              {!isAuthenticated && (
+                <li className="nav-item">
+                  <NavLink to="/login" className="btn btn-success">
+                    Connexion
+                  </NavLink>
+                </li>
+              )}
+              {isAuthenticated && (
+                <li className="nav-item">
+                  <button onClick={handleLogout} className="btn btn-danger">
+                    Deconnexion
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>
