@@ -1,10 +1,14 @@
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 function logout() {
   window.localStorage.removeItem("authToken");
   delete axios.defaults.headers["Authorization"];
 }
 
+function setAxiosToken(token) {
+  axios.defaults.headers["Authorization"] = "Bearer " + token; // Setting Authorization header
+}
 // Function to authenticate user with given credentials
 function authenticate(credentials) {
   // Sending a POST request to the login endpoint
@@ -16,11 +20,26 @@ function authenticate(credentials) {
       // Storing the token in localStorage and setting the Authorization header
       .then((token) => {
         window.localStorage.setItem("authToken", token); // Storing token in localStorage
-
-        axios.defaults.headers["Authorization"] = "Bearer " + token; // Setting Authorization header
+        setAxiosToken(token); // Setting token in axios
       })
   );
 }
 
+function setup() {
+  // 1 voir si on a un token
+
+  const token = window.localStorage.getItem("authToken");
+
+  // 2 si le token est valide
+
+  if (token) {
+    const { exp: expiration } = jwtDecode(token);
+    if (expiration * 1000 > new Date().getTime()) {
+      setAxiosToken(token); // Setting token in axios
+      // console.log("Connexion établie avec le token");
+    }
+  }
+}
+
 // Exporting the authenticate function for use in other parts of the application
-export default { authenticate, logout };
+export default { authenticate, logout, setup };

@@ -7,6 +7,9 @@ import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import AboutUS from './Pages/AboutUS';
 import Prices from './Pages/Prices';
 import LoginPage from './Pages/LoginPage';
+import authAPI from './Services/authAPI';
+
+authAPI.setup();
 
 
 export default function App() {
