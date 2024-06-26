@@ -68,9 +68,9 @@ export default function Navbar({ isAuthenticated, onLogout }) {
             <ul className="navbar-nav ml-auto">
               {!isAuthenticated && (
                 <li className="nav-item">
-                  <a href="/login" className="btn btn-success">
+                  <NavLink to="/login" className="btn btn-success">
                     Administration
-                  </a>
+                  </NavLink>
                 </li>
               )}
               {isAuthenticated && (

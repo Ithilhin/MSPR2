@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import authAPI from "../Services/authAPI";
 import { useNavigate } from "react-router-dom";
 import Fields from "../Components/forms/Fields";
@@ -12,15 +12,34 @@ export default function LoginPage({ onLogin }) {
 
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const token = localStorage.getItem("authToken");
+
+  console.log("token at start", token);
+
+  
+  function accessAdminSpace() {
+    const token = localStorage.getItem("authToken");
+    console.log("token inside function", token);
+    fetch("/login", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }).catch((error) => console.error("Error:", error));
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await authAPI.authenticate(credentials);
+      const response = await authAPI.authenticate(credentials);
+      console.log("response", response);
       toast.success("Vous êtes désormais connecté");
       setError("");
       onLogin(true);
+      console.log("token inside try", token);
+      accessAdminSpace();
       navigate("/admin", { replace: true });
     } catch (error) {
       setError("Les informations fournies ne sont pas correctes");

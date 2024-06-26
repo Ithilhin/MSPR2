@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/app.css";
 import Navbar from "./Components/Navbar";
+import Logout from "./Components/Logout";
 import Homepage from "./Pages/Homepage";
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import AboutUS from "./Pages/AboutUSPage";
@@ -36,6 +37,11 @@ export default function App() {
               path="/login"
               element={<LoginPage onLogin={setIsAuthenticated} />}
             />
+            <Route
+              path="/logout"
+              element={<Logout onLogout={setIsAuthenticated}/>}
+            />
+            
             <Route
               path="/admin"
               element={
