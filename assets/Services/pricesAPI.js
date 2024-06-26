@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cache from "./cache"
+import {PRICES_API} from "../config";
 
 
 async function getPrices() {
@@ -8,7 +9,7 @@ async function getPrices() {
     if (cachedPrices) return cachedPrices;
     
     return axios
-    .get("http://localhost:8000/api/pricess")
+    .get(PRICES_API)
     .then((response) => {
         const prices = response.data["hydra:member"];
         Cache.set("prices", prices);

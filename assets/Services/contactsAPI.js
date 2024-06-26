@@ -1,8 +1,9 @@
 import axios from "axios";
+import { CONTACT_API } from "../config";
 
 function postContactMessage(contact){
   return axios.post(
-        "http://localhost:8000/api/contacts",
+        CONTACT_API,
         contact      
       );
 }

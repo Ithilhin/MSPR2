@@ -1,5 +1,6 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import {LOGIN_CHECK_API} from "../config";
 
 function logout() {
   window.localStorage.removeItem("authToken");
@@ -14,7 +15,7 @@ function authenticate(credentials) {
   // Sending a POST request to the login endpoint
   return (
     axios
-      .post("http://localhost:8000/api/login_check", credentials)
+      .post(LOGIN_CHECK_API, credentials)
       // Extracting the token from the response
       .then((response) => response.data.token)
       // Storing the token in localStorage and setting the Authorization header
