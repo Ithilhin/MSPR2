@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import textsAPI from "../Services/textsAPI";
 
-export default function TextForDisplay({ text }) {
+export default function aTextForDisplay({ page }) {
+  const [texts, setTexts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    textsAPI
+      .getTexts()
+      // .then((data) => data.filter((text) => text.Page === page))
+      .then((data) => {
+        const filteredData = data.filter((text) => {
+          return text.page === page;
+        });
+
+        return filteredData;
+      })
+      .then((data) => setTexts(data))
+      .catch((error) => console.log(error.response));
+    setLoading(false);
+  }, []);
+
   return (
     <>
-    <p className="w-75 col-12 text-center my-5 fs-5 ">{text}</p>;
+      {console.log("from return", texts)}
+      {loading ? (
+        <p>Chargement...</p>
+      ) : (
+        texts.map((text, index) => (
+          <div key={index} className="text-container">
+            <p className="my-5" dangerouslySetInnerHTML={{ __html: text.text }}></p>
+          </div>
+        ))
+      )}
     </>
-    
   );
 }

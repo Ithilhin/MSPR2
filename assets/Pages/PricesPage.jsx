@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import pricesAPI from "../Services/pricesAPI";
 import TableLoader from "../Components/loaders/TableLoader";
 import Title from "../Components/Title";
+import TextForDisplay from "../Components/TextForDisplay";
 
 export default function Prices() {
   const [prices, setPrices] = useState([]);
@@ -46,6 +47,7 @@ export default function Prices() {
         </table>
         {loading && <TableLoader />}
       </div>
+      <TextForDisplay page={"Tarifs"} />
     </div>
   );
 }

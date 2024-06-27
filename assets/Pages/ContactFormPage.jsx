@@ -5,6 +5,7 @@ import contactsAPI from "../Services/contactsAPI";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Title from "../Components/Title";
+import TextForDisplay from "../Components/TextForDisplay";
 
 export default function ContactFormPage() {
   const [contact, setContact] = useState({
@@ -122,21 +123,7 @@ export default function ContactFormPage() {
       <div className="d-flex justify-content-end">
         <button className="btn btn-success col-6 mt-3">Envoyer</button>
       </div>
-      <p className="col-12 fs-6">
-        * Champs obligatoires <br />
-        ** Les données personnelles communiquées sont nécessaires aux fins de
-        vous contacter. Elles sont destinées à Acrocimes élagage et ses
-        sous-traitants. Vous disposez de droits d’accès, de rectification,
-        d’effacement, de portabilité, de limitation, d’opposition, de retrait de
-        votre consentement à tout moment et du droit d’introduire une
-        réclamation auprès d’une autorité de contrôle, ainsi que d’organiser le
-        sort de vos données post-mortem. Vous pouvez exercer ces droits par voie
-        postale à l'adresse 24 Rue Anatole France, 66670 Bages, France, ou par
-        courrier électronique à l'adresse contact@acrocimes-elagage.fr. Un
-        justificatif d'identité pourra vous être demandé. Nous conservons vos
-        données pendant la période de prise de contact puis pendant la durée de
-        prescription légale aux fins probatoires et de gestion des contentieux.
-      </p>
+      <TextForDisplay page={"Contact"}/>
     </form>
   );
 }

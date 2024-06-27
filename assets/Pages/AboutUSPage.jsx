@@ -9,7 +9,7 @@ export default function AboutUS() {
     <div className="container d-flex justify-content-center align-items-center row m-auto">
       <Title texte={"Qui Sommes-Nous?"}/>
       <FoundersDisplay />
-      <TextForDisplay text={text}/>
+      <TextForDisplay page={"Qui-sommes-nous"}/>
     </div>
   );
 }
