@@ -15,6 +15,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrestationsPage from "./Pages/PrestationsPage";
+import Footer from "./Components/Footer";
 
 authAPI.setup();
 axios.defaults.headers["Content-Type"] = "application/ld+json ";
@@ -55,7 +56,9 @@ export default function App() {
             <Route path="/" element={<Homepage />} />
           </Routes>
         </main>
+        <Footer></Footer>
       </HashRouter>
+
       <ToastContainer 
       position="bottom-left"
       />
