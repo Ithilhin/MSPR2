@@ -28,40 +28,40 @@ export default function App() {
   return (
     <>
       <HashRouter>
-        <Navbar
-          isAuthenticated={isAuthenticated}
-          onLogout={setIsAuthenticated}
-        />
-        <main className="">
-          <Routes>
-            <Route
-              path="/login"
-              element={<LoginPage onLogin={setIsAuthenticated} />}
-            />
-            <Route
-              path="/logout"
-              element={<Logout onLogout={setIsAuthenticated}/>}
-            />
-            
-            <Route
-              path="/admin"
-              element={
-                isAuthenticated ? <AdminRedirect /> : <Navigate to="/login" />
-              }
-            />
-            <Route path="/aboutUs" element={<AboutUS />} />
-            <Route path="/prestations" element={<PrestationsPage />} />
-            <Route path="/prices" element={<Prices />} />
-            <Route path="/contactForm" element={<ContactFormPage />} />
-            <Route path="/" element={<Homepage />} />
-          </Routes>
-        </main>
-        <Footer></Footer>
+        <div className="vh-100 d-flex flex-column">
+          <Navbar
+            isAuthenticated={isAuthenticated}
+            onLogout={setIsAuthenticated}
+          />
+          <main className="">
+            <Routes>
+              <Route
+                path="/login"
+                element={<LoginPage onLogin={setIsAuthenticated} />}
+              />
+              <Route
+                path="/logout"
+                element={<Logout onLogout={setIsAuthenticated} />}
+              />
+
+              <Route
+                path="/admin"
+                element={
+                  isAuthenticated ? <AdminRedirect /> : <Navigate to="/login" />
+                }
+              />
+              <Route path="/aboutUs" element={<AboutUS />} />
+              <Route path="/prestations" element={<PrestationsPage />} />
+              <Route path="/prices" element={<Prices />} />
+              <Route path="/contactForm" element={<ContactFormPage />} />
+              <Route path="/" element={<Homepage />} />
+            </Routes>
+          </main>
+          <Footer></Footer>
+        </div>
       </HashRouter>
 
-      <ToastContainer 
-      position="bottom-left"
-      />
+      <ToastContainer position="bottom-left" />
     </>
   );
 }
