@@ -1,1 +1,27 @@
+:root {
+  --customBlue: #2a4b9b;
+  --customViolet: #692b85;
+  --customGreen: #098136;
+  --customYellow: #f1a80f;
+  --customRed: #da4d66;
+}
 
+.bg-custom-violet {
+  background-color: var(--customViolet);
+}
+
+.bg-custom-blue {
+  background-color: var(--customBlue);
+}
+
+.bg-custom-green {
+  background-color: var(--customGreen);
+}
+
+.bg-custom-yellow {
+  background-color: var(--customYellow);
+}
+
+.bg-custom-red {
+  background-color: var(--customRed);
+}
