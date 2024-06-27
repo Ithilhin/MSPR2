@@ -12,7 +12,7 @@ export default function Homepage() {
     <div className="d-flex justify-content-center align-items-center row ">
       <Carousel />
       <div className="container col-10 d-flex flex-column align-items-center">
-        <Title texte={""} />
+        <Title text={""} />
         <TextForDisplay page={"Accueil"} />
       </div>
 

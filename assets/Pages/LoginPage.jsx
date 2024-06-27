@@ -17,7 +17,6 @@ export default function LoginPage({ onLogin }) {
 
   console.log("token at start", token);
 
-  
   function accessAdminSpace() {
     const token = localStorage.getItem("authToken");
     console.log("token inside function", token);
@@ -53,8 +52,8 @@ export default function LoginPage({ onLogin }) {
   }
 
   return (
-    <>
-      <Title />
+    <div className="container d-flex flex-column">
+      <Title text={"Connectez-vous pour accéder à l'espace administration"}/>
       <form onSubmit={handleSubmit}>
         <Fields
           label="Adresse email"
@@ -81,6 +80,6 @@ export default function LoginPage({ onLogin }) {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

@@ -17,7 +17,7 @@ export default function Prices() {
 
   return (
     <div className="container d-flex justify-content-center align-items-center row m-auto">
-      <Title texte={"Nos Tarifs"} />
+      <Title text={"Nos Tarifs"} />
       <div className="container my-5">
         <table className="table table-hover">
           <thead>
