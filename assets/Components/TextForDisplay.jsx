@@ -8,7 +8,6 @@ export default function aTextForDisplay({ page }) {
   useEffect(() => {
     textsAPI
       .getTexts()
-      // .then((data) => data.filter((text) => text.Page === page))
       .then((data) => {
         const filteredData = data.filter((text) => {
           return text.page === page;
@@ -23,13 +22,16 @@ export default function aTextForDisplay({ page }) {
 
   return (
     <>
-      {console.log("from return", texts)}
+      {/* {console.log("from return in TextForDisplay", texts)} */}
       {loading ? (
         <p>Chargement...</p>
       ) : (
         texts.map((text, index) => (
           <div key={index} className="text-container">
-            <p className="my-5" dangerouslySetInnerHTML={{ __html: text.text }}></p>
+            <p
+              className="my-5"
+              dangerouslySetInnerHTML={{ __html: text.text }}
+            ></p>
           </div>
         ))
       )}

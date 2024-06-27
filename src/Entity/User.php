@@ -24,7 +24,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 // Configuration de la ressource API
 // #[ApiResource(paginationEnabled: true, paginationItemsPerPage: 50, order: ['email' => 'ASC'])]
 #[ApiResource(
-    // normalizationContext: ['groups' => ['users_read']],
+    normalizationContext: ['groups' => ['users_read']],
     // denormalizationContext: ['groups' => ['users_write']],
     // operations: [
     //     new Get(
@@ -43,7 +43,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    // #[Groups(['users_read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
@@ -80,12 +79,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $tel = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['users_read'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['users_read'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['users_read'])]
     private ?string $pictureFileName = null;
 
     public function getId(): ?int

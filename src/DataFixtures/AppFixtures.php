@@ -45,6 +45,35 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
+        //  Setup Bob et Tom
+        $Bob = new User();
+        $hash = $this->encoder->hashPassword($Bob, 'password');
+
+        $Bob->setFirstname("Bob");
+        $Bob->setLastname($faker->lastName);
+        $Bob->setEmail("Bob@canopee.com");
+        $Bob->setTel($faker->phoneNumber);
+        $Bob->setPassword($hash);
+        $Bob->setRoles(['ROLE_USER', ['ROLE_ADMIN']]);
+        $Bob->setTitle("BOB - Directeur Scientifique");
+        $Bob->setDescription("Bob, co-fondateur de Canopées, est un biologiste passionné avec une expertise en botanique. Son engagement pour la biodiversité guide l'entreprise vers des pratiques écologiques.");
+        $Bob->setPictureFileName("bob.jpeg");
+        $manager->persist($Bob);
+
+        $Tom = new User();
+        $hash = $this->encoder->hashPassword($Tom, 'password');
+
+        $Tom->setFirstname("Tom");
+        $Tom->setLastname($faker->lastName);
+        $Tom->setEmail("Tom@canopee.com");
+        $Tom->setTel($faker->phoneNumber);
+        $Tom->setPassword($hash);
+        $Tom->setRoles(['ROLE_USER', ['ROLE_ADMIN']]);
+        $Tom->setTitle("TOM - Directeur Créatif");
+        $Tom->setDescription("Tom, co-fondateur, possède un solide background en paysagisme. Créatif et visionnaire, il transforme les espaces verts en œuvres d'art vivantes.");
+        $Tom->setPictureFileName("tom.jpeg");
+        $manager->persist($Tom);
+
         // Setup clients
         for ($c = 0; $c < 3; $c++) {
             $client = new Client();
@@ -66,7 +95,7 @@ class AppFixtures extends Fixture
                     $client->setDescription("Les <span class='text-custom-violet fw-bold'>collectivités territoriales</span> partenaires de Canopées visent à embellir les espaces publics, améliorant ainsi la qualité de vie des citoyens. Elles privilégient des projets verts durables. <br /> Ces administrations s'engagent dans des initiatives écologiques, cherchant à réduire l'empreinte environnementale à travers des pratiques de gestion durable des espaces verts.<br /> Elles valorisent la collaboration avec Canopées pour son expertise et son engagement envers des solutions respectueuses de l'environnement.");
                     break;
             };
-            
+
             $manager->persist($client);
         }
 
@@ -137,9 +166,7 @@ class AppFixtures extends Fixture
                     $text->setText("Bienvenue sur le site de Canopées, votre partenaire privilégié pour la conception, la réalisation, et l'entretien d'espaces verts. Fondée en 2020 par Bob et Tom, deux passionnés de la nature, notre société s'engage à offrir des services de qualité pour embellir vos extérieurs, que vous soyez particuliers, professionnels ou collectivités territoriales. Chez Canopées, nous croyons fermement que chaque espace vert a le potentiel de devenir un petit coin de paradis. Nos services sont conçus pour transformer cette vision en réalité.<br /> Notre engagement envers l'environnement se reflète également dans notre charte graphique, inspirée de la valorisation des déchets verts. Nous pratiquons le compostage des déchets issus de nos activités, réduisant ainsi l'impact environnemental et enrichissant la terre que nous chérissons tant.<br /> Explorez notre site pour découvrir davantage sur nos services et comment nous pouvons vous aider à réaliser le jardin de vos rêves. Chez Canopées, nous sommes dédiés à la beauté de vos espaces extérieurs et à la préservation de notre planète. Contactez-nous dès aujourd'hui pour faire le premier pas vers la création ou l'entretien de votre espace vert idéal.");
                     break;
                 case "Qui-sommes-nous":
-                    $text->setText("Bienvenue sur le site de Canopées, votre partenaire privilégié pour la conception, la réalisation, et l'entretien d'espaces verts. Fondée en 2020 par Bob et Tom, deux passionnés de la nature, notre société s'engage à offrir des services de qualité pour embellir vos extérieurs, que vous soyez particuliers, professionnels ou collectivités territoriales. Chez Canopées, nous croyons fermement que chaque espace vert a le potentiel de devenir un petit coin de paradis. Nos services sont conçus pour transformer cette vision en réalité.
-                    Notre engagement envers l'environnement se reflète également dans notre charte graphique, inspirée de la valorisation des déchets verts. Nous pratiquons le compostage des déchets issus de nos activités, réduisant ainsi l'impact environnemental et enrichissant la terre que nous chérissons tant.
-                    Explorez notre site pour découvrir davantage sur nos services et comment nous pouvons vous aider à réaliser le jardin de vos rêves. Chez Canopées, nous sommes dédiés à la beauté de vos espaces extérieurs et à la préservation de notre planète. Contactez-nous dès aujourd'hui pour faire le premier pas vers la création ou l'entretien de votre espace vert idéal.");
+                    $text->setText("Bienvenue sur le site de Canopées, votre partenaire privilégié pour la conception, la réalisation, et l'entretien d'espaces verts. Fondée en 2020 par Bob et Tom, deux passionnés de la nature, notre société s'engage à offrir des services de qualité pour embellir vos extérieurs, que vous soyez particuliers, professionnels ou collectivités territoriales. Chez Canopées, nous croyons fermement que chaque espace vert a le potentiel de devenir un petit coin de paradis. Nos services sont conçus pour transformer cette vision en réalité.<br /> Notre engagement envers l'environnement se reflète également dans notre charte graphique, inspirée de la valorisation des déchets verts. Nous pratiquons le compostage des déchets issus de nos activités, réduisant ainsi l'impact environnemental et enrichissant la terre que nous chérissons tant.<br /> Explorez notre site pour découvrir davantage sur nos services et comment nous pouvons vous aider à réaliser le jardin de vos rêves. Chez Canopées, nous sommes dédiés à la beauté de vos espaces extérieurs et à la préservation de notre planète. Contactez-nous dès aujourd'hui pour faire le premier pas vers la création ou l'entretien de votre espace vert idéal.");
                     break;
                 case "Prestations":
                     $text->setText("");
@@ -166,7 +193,7 @@ class AppFixtures extends Fixture
             $realisation->setTitle("test");
             $realisation->setText("test");
             $realisation->setActive(FALSE);
-            $i=$r+1;
+            $i = $r + 1;
             $realisation->setImageFileName('rea' . $i . '.jpg');
             $manager->persist($realisation);
         }

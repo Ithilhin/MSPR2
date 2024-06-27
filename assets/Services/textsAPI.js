@@ -1,12 +1,18 @@
 import axios from "axios";
-import {TEXT_API} from "../config";
+import Cache from "./cache";
+import { TEXT_API } from "../config";
 
 async function getTexts() {
+  const cachedTexts = await Cache.get("texts");
+  
+  if (cachedTexts) return cachedTexts;
+
   return axios
     .get(TEXT_API)
     .then((response) => {
       const texts = response.data["hydra:member"];
-      console.log("from API", texts);
+      Cache.set("texts", texts);
+      
       return texts;
     })
     .catch((error) => console.log(error.response));
