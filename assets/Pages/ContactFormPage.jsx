@@ -56,7 +56,7 @@ export default function ContactFormPage() {
       className="container d-flex justify-content-center align-items-center row m-auto"
       onSubmit={handleSubmit}
     >
-      <Title />
+      <Title texte={"Laissez Nous Un Message"} />
       <Fields
         divClassName="col-12 col-md-6"
         name="lastName"

@@ -4,7 +4,7 @@ import Title from "../Components/Title";
 export default function PrestationsPage() {
   return (
     <div className="container d-flex justify-content-center align-items-center row m-auto">
-      <Title/>
+      <Title texte={"Nos Prestations"}/>
     </div>
   );
 }

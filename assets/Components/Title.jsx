@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Title() {
+export default function Title({texte}) {
   return (
     <>
       <img
@@ -8,7 +8,7 @@ export default function Title() {
         src="./image/logo-canopees.png"
         alt="logo Canopées"
       />
-      <h2 className="text-center mt-4 mb-0 fw-bold">Nos Tarifs</h2>
+      <h2 className="text-center mt-4 mb-0 fw-bold">{texte}</h2>
     </>
   );
 }
