@@ -25,3 +25,23 @@
 .bg-custom-red {
   background-color: var(--customRed);
 }
+
+.text-custom-green {
+  color: var(--customGreen);
+}
+
+.text-custom-yellow {
+  color: var(--customYellow);
+}
+
+.text-custom-red {
+  color: var(--customRed);
+}
+
+.text-custom-blue {
+  color: var(--customBlue);
+}
+
+.text-custom-violet {
+  color: var(--customViolet);
+}

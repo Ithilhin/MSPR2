@@ -1,27 +1,19 @@
 import React from "react";
+import Title from "../Components/Title";
+import TextForDisplay from "../Components/TextForDisplay";
+import Carousel from "../Components/Carousel";
+import OurClients from "../Components/OurClients";
+import LastJobs from "../Components/LastJobs";
 
 export default function Homepage() {
+  const text="Bienvenue sur le site de Canopées, votre partenaire privilégié pour la conception, la réalisation, et l'entretien d'espaces verts. Fondée en 2020 par Bob et Tom, deux passionnés de la nature, notre société s'engage à offrir des services de qualité pour embellir vos extérieurs, que vous soyez particuliers, professionnels ou collectivités territoriales. Chez Canopées, nous croyons fermement que chaque espace vert a le potentiel de devenir un petit coin de paradis. Nos services sont conçus pour transformer cette vision en réalité.<br /> Notre engagement envers l'environnement se reflète également dans notre charte graphique, inspirée de la valorisation des déchets verts. Nous pratiquons le compostage des déchets issus de nos activités, réduisant ainsi l'impact environnemental et enrichissant la terre que nous chérissons tant.<br /> Explorez notre site pour découvrir davantage sur nos services et comment nous pouvons vous aider à réaliser le jardin de vos rêves.  Chez Canopées, nous sommes dédiés à la beauté de vos espaces extérieurs et à la préservation de notre planète. Contactez-nous dès aujourd'hui pour faire le premier pas vers la création ou l'entretien de votre espace vert idéal."
   return (
-    <div className="container d-flex justify-content-center align-items-center row m-auto">
-      <h2>Example body text</h2>
-      <p>
-        Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo.
-        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-      </p>
-      <p>
-        <small>This line of text is meant to be treated as fine print.</small>
-      </p>
-      <p>
-        The following is <strong>rendered as bold text</strong>.
-      </p>
-      <p>
-        The following is <em>rendered as italicized text</em>.
-      </p>
-      <p>
-        An abbreviation of the word attribute is{" "}
-        <abbr title="attribute">attr</abbr>.
-      </p>
+    <div className="d-flex justify-content-center align-items-center row ">
+      <Carousel />
+      <Title texte={""}/>
+      <TextForDisplay text={text}/>
+      <OurClients />
+      <LastJobs />
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function App() {
           isAuthenticated={isAuthenticated}
           onLogout={setIsAuthenticated}
         />
-        <main className="container pt-5">
+        <main className="">
           <Routes>
             <Route
               path="/login"
