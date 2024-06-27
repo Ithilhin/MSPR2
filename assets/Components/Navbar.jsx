@@ -33,7 +33,9 @@ export default function Navbar({ isAuthenticated, onLogout }) {
               <li className="nav-item">
                 {/* TODO: inserer logo Canopées */}
                 <NavLink className="nav-link active" to="/">
-                  IMG CANOPEES
+                  <img className="rounded-circle logo"
+                src="./image/logo.png"
+                alt="logo canopée" />
                   <span className="visually-hidden">(current)</span>
                 </NavLink>
               </li>
