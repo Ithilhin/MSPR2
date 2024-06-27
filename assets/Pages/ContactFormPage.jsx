@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import contactsAPI from "../Services/contactsAPI";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Title from "../Components/Title";
 
 export default function ContactFormPage() {
   const [contact, setContact] = useState({
@@ -55,12 +56,7 @@ export default function ContactFormPage() {
       className="container d-flex justify-content-center align-items-center row m-auto"
       onSubmit={handleSubmit}
     >
-      <img
-        className="col-12 col-md-8 col-xl-6 mt-3"
-        src="./image/logo-canopees.png"
-        alt="logo Canopées"
-      />
-      <h2 className="text-center mt-4 mb-0 fw-bold">Laissez-nous un message</h2>
+      <Title />
       <Fields
         divClassName="col-12 col-md-6"
         name="lastName"

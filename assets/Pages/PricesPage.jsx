@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import pricesAPI from "../Services/pricesAPI";
 import TableLoader from "../Components/loaders/TableLoader";
+import Title from "../Components/Title";
 
 export default function Prices() {
   const [prices, setPrices] = useState([]);
@@ -15,12 +16,7 @@ export default function Prices() {
 
   return (
     <div className="container d-flex justify-content-center align-items-center row m-auto">
-      <img
-        className="col-12 col-md-8 col-xl-6 mt-3"
-        src="./image/logo-canopees.png"
-        alt="logo Canopées"
-      />
-      <h2 className="text-center mt-4 mb-0 fw-bold">Nos Tarifs</h2>
+      <Title />
       <div className="container my-5">
         <table className="table table-hover">
           <thead>

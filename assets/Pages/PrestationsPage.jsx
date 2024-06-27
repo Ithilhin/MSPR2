@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import Title from "../Components/Title";
 
 export default function PrestationsPage() {
   return (
-    <div>PrestationsPage</div>
-  )
+    <div className="container d-flex justify-content-center align-items-center row m-auto">
+      <Title/>
+    </div>
+  );
 }

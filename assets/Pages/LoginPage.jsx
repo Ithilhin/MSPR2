@@ -3,6 +3,7 @@ import authAPI from "../Services/authAPI";
 import { useNavigate } from "react-router-dom";
 import Fields from "../Components/forms/Fields";
 import { toast } from "react-toastify";
+import Title from "../Components/Title";
 
 export default function LoginPage({ onLogin }) {
   const [credentials, setCredentials] = useState({
@@ -53,6 +54,7 @@ export default function LoginPage({ onLogin }) {
 
   return (
     <>
+      <Title />
       <form onSubmit={handleSubmit}>
         <Fields
           label="Adresse email"
