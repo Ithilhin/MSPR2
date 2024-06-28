@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Client;
 use App\Entity\Contact;
 use App\Entity\Image;
+use App\Entity\ImageForCarousel;
 use App\Entity\Prestation;
 use App\Entity\Prices;
 use App\Entity\Realisation;
@@ -54,7 +55,7 @@ class AppFixtures extends Fixture
         $Bob->setEmail("bob@canopee.com");
         $Bob->setTel($faker->phoneNumber);
         $Bob->setPassword($hash);
-        $Bob->setRoles(["ROLE_USER","ROLE_ADMIN"]);
+        $Bob->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
         $Bob->setTitle("BOB - Directeur Scientifique");
         $Bob->setDescription("Bob, co-fondateur de Canopées, est un biologiste passionné avec une expertise en botanique. Son engagement pour la biodiversité guide l'entreprise vers des pratiques écologiques.");
         $Bob->setPictureFileName("bob.jpeg");
@@ -68,7 +69,7 @@ class AppFixtures extends Fixture
         $Tom->setEmail("tom@canopee.com");
         $Tom->setTel($faker->phoneNumber);
         $Tom->setPassword($hash);
-        $Tom->setRoles(["ROLE_USER","ROLE_ADMIN"]);
+        $Tom->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
         $Tom->setTitle("TOM - Directeur Créatif");
         $Tom->setDescription("Tom, co-fondateur, possède un solide background en paysagisme. Créatif et visionnaire, il transforme les espaces verts en œuvres d'art vivantes.");
         $Tom->setPictureFileName("tom.jpeg");
@@ -77,7 +78,7 @@ class AppFixtures extends Fixture
         // Setup clients
         for ($c = 0; $c < 3; $c++) {
             $client = new Client();
-            $client->setActive($faker->boolean(50));
+            $client->setActive(TRUE);
             $type = [
                 'particulier',
                 'professionnel',
@@ -188,26 +189,35 @@ class AppFixtures extends Fixture
         }
 
         // Setup réalisations
-        
-            $realisation1 = new Realisation();
-            $realisation1->setTitle("JARDIN À MURETS ET PAREMENT EN PIERRE ÉTAGÉS");
-            $realisation1->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis");
-            $realisation1->setActive(TRUE);
-            $realisation1->setImageFileName('rea1.jpg');
-            $manager->persist($realisation1);
-            $realisation2 = new Realisation();
-            $realisation2->setTitle("AMÉNAGEMENT DE JARDIN À SAINT AMAND LES EAUX");
-            $realisation2->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis");
-            $realisation2->setActive(TRUE);
-            $realisation2->setImageFileName('rea2.jpg');
-            $manager->persist($realisation2);
-            $realisation3 = new Realisation();
-            $realisation3->setTitle("RÉNOVATION : UN JARDIN PROVENCAL SE REDÉPLOIE AUTOUR DE SON MAS");
-            $realisation3->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis");
-            $realisation3->setActive(TRUE);
-            $realisation3->setImageFileName('rea3.jpg');
-            $manager->persist($realisation3);
-        
+
+        $realisation1 = new Realisation();
+        $realisation1->setTitle("JARDIN À MURETS ET PAREMENT EN PIERRE ÉTAGÉS");
+        $realisation1->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis");
+        $realisation1->setActive(TRUE);
+        $realisation1->setImageFileName('rea1.jpg');
+        $manager->persist($realisation1);
+        $realisation2 = new Realisation();
+        $realisation2->setTitle("AMÉNAGEMENT DE JARDIN À SAINT AMAND LES EAUX");
+        $realisation2->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis");
+        $realisation2->setActive(TRUE);
+        $realisation2->setImageFileName('rea2.jpg');
+        $manager->persist($realisation2);
+        $realisation3 = new Realisation();
+        $realisation3->setTitle("RÉNOVATION : UN JARDIN PROVENCAL SE REDÉPLOIE AUTOUR DE SON MAS");
+        $realisation3->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis");
+        $realisation3->setActive(TRUE);
+        $realisation3->setImageFileName('rea3.jpg');
+        $manager->persist($realisation3);
+
+        // Setup Images for Carousel
+        for ($i = 0; $i < 4; $i++) {
+            $imageCarousel = new ImageForCarousel();
+            $imageCarousel->setSrc('carousel' . $i+1 . '.jpg');
+            $imageCarousel->setalt("Carousel : " . $i+1);
+            $imageCarousel->setActive(TRUE);
+            $manager->persist($imageCarousel);
+        }
+
 
         $manager->flush();
     }

@@ -9,3 +9,4 @@ export const PRESTATION_API = API_URL + "prestations";
 export const REALISATION_API = API_URL + "realisations";
 export const TEXT_API = API_URL + "texts";
 export const USER_API = API_URL + "users";
+export const IMAGE_FOR_CAROUSEL_API = API_URL + "image_for_carousels";

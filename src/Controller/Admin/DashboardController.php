@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Client;
 use App\Entity\Contact;
 use App\Entity\Image;
+use App\Entity\ImageForCarousel;
 use App\Entity\Prestation;
 use App\Entity\Realisation;
 use App\Entity\Text;
@@ -56,6 +57,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Textes modifiables', 'fas fa-list', Text::class);
         yield MenuItem::linkToCrud('Clients types', 'fas fa-list', Client::class);
         yield MenuItem::linkToCrud('Messages', 'fas fa-list', Contact::class);
+        yield MenuItem::linkToCrud('Images pour carroussel', 'fas fa-list', ImageForCarousel::class);
+
 
         // Add a button to go back to the front homepage
         yield MenuItem::linkToUrl("Page D'acceuil du site", 'fas fa-home', '/#');

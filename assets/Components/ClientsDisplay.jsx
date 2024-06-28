@@ -21,7 +21,6 @@ export default function ClientsDisplay() {
 
   return (
     <div>
-      {console.log("from return in OurClients", clients)}
       <section id="Clients" className="bg-custom-blue">
         <p className="text-white h1 text-center pt-3">Découvrez nos clients</p>
         <div className="container mt-4">
@@ -30,7 +29,6 @@ export default function ClientsDisplay() {
               {!loading &&
                 clients.map((client, index) => (
                   <React.Fragment key={index}>
-                    {console.log(client.type)}
                     <div className="row col-8 col-lg d-flex flex-column h-100">
                       <div className="col-12 p-0 d-flex">
                         <div className="col-2 h-35"></div>
