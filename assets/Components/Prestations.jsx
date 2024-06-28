@@ -28,7 +28,6 @@ export default function Prestations() {
 
       </div>
       {/* TODO : add animation on darkbackground */}
-      {/* TODO: create subcomponents */}
       {/* TODO: add modal */}
     </div>
   );
