@@ -10,7 +10,7 @@ async function getClients() {
     .get(CLIENT_API)
     .then((response) => {
       const clients = response.data["hydra:member"];
-      Cache.set("founders", clients);
+      Cache.set("clients", clients);
       return clients;
     })
     .catch((error) => console.log(error.response));

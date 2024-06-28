@@ -2,8 +2,8 @@ import React from "react";
 import Title from "../Components/Title";
 import TextForDisplay from "../Components/TextForDisplay";
 import Carousel from "../Components/Carousel";
-import OurClients from "../Components/OurClients";
-import LastJobs from "../Components/LastJobs";
+import ClientsDisplay from "../Components/clientsDisplay";
+import RealisationDisplay from "../Components/RealisationDisplay";
 
 export default function Homepage() {
   const text =
@@ -15,9 +15,8 @@ export default function Homepage() {
         <Title text={""} />
         <TextForDisplay page={"Accueil"} />
       </div>
-
-      <OurClients />
-      <LastJobs />
+      <ClientsDisplay />
+      <RealisationDisplay />
     </div>
   );
 }

@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import clientsAPI from "../Services/clientsAPI";
 
-export default function OurClients() {
+export default function ClientsDisplay() {
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     clientsAPI
       .getClients()
+      .then((data) => {
+        const filteredData = data.filter((client) => {
+          return client.active;
+        });
+        return filteredData;
+      })
       .then((data) => setClients(data))
       .catch((error) => console.log(error.response));
     setLoading(false);

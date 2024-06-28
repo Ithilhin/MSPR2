@@ -33,6 +33,7 @@ class Client
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Groups(["clients_read"])]
     private ?bool $active = null;
 
     // exemple de méthode calculée

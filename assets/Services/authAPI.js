@@ -10,6 +10,7 @@ function logout() {
 function setAxiosToken(token) {
   axios.defaults.headers["Authorization"] = "Bearer " + token; // Setting Authorization header
 }
+
 // Function to authenticate user with given credentials
 function authenticate(credentials) {
   // Sending a POST request to the login endpoint
