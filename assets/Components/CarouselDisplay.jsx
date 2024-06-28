@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import imagesForCarouselAPI from "../Services/imageForCarouselAPI";
 import Carousel from "react-bootstrap/Carousel";
-import CarouselImage from "./CarouselImage";
+import CarouselDisplayImages from "./CarouselDisplayImages";
 
 export default function CarouselDisplay() {
   const [imagesForCarousel, setImagesForCarousel] = useState([]);
@@ -33,7 +33,7 @@ export default function CarouselDisplay() {
         <Carousel.Item className="" key={index} interval={3000}>
           <div className="h-400 d-flex justify-content-around align-items-center">
             {pair.map((image, imageIndex) => (
-              <CarouselImage
+              <CarouselDisplayImages
                 src={`./image/${image.src}`}
                 alt={`./image/${image.alt}`}
               />

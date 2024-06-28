@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import realisationsAPI from "../Services/realisationsAPI";
+import Carousel from "react-bootstrap/Carousel";
+import RealisationDisplayImages from "./RealisationDisplayImages";
 
 export default function RealisationDisplay() {
   const [realisations, setRealisations] = useState([]);
@@ -16,80 +18,39 @@ export default function RealisationDisplay() {
         return filteredData;
       })
       .then((data) => setRealisations(data))
-      
+
       .catch((error) => console.log(error.response));
     setLoading(false);
   }, []);
 
+  const trios = [];
+  for (let i = 0; i < realisations.length; i += 3) {
+    trios.push(realisations.slice(i, i + 3));
+  }
+
   return (
     <div>
-      <div>
-        <section id="">
-          <p className="text-dark h1 text-center pt-3">
-            Nos dernières réalisations
-          </p>
-          <section className="my-4" id="CarrouselBottom">
-            <div
-              className="carousel slide h-100 d-flex align-items-center"
-              id="carousel2"
-              data-bs-ride="carousel"
-              data-bs-interval="200000"
-            >
-              <div className="carousel-inner">
-                <div className="carousel-item active">
-                  <div className="row g-0">
-                    {!loading &&
-                      realisations.map((realisation, index) => (
-                        <React.Fragment key={index}>
-                          <div className="col-1"></div>
-                          <div className="col">
-                            <div className="card h-100 border border-primary">
-                              <img
-                                src={`./image/${realisation.imageFileName}`}
-                                className="card-img-top"
-                              />
-                              <div className="card-body">
-                                <h5 className="card-title text-center">
-                                  {realisation.title}
-                                </h5>
-                                <p className="card-text text-center">
-                                    {realisation.text}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                          {index === realisations.length -1 && <div className="col-1"></div>}
-                        </React.Fragment>
-                      ))}
-                  </div>
-                </div>
-              </div>
-              <button
-                className="carousel-control-prev justify-content-start p-4"
-                type="button"
-                data-bs-target="#carousel2"
-                data-bs-slide="prev"
-              >
-                <span className="carousel-control-prev-icon" aria-hidden="true">
-                  <i className="fas fa-chevron-left text-dark fa-3x"></i>
-                </span>
-                <span className="visually-hidden">Previous</span>
-              </button>
-              <button
-                className="carousel-control-next justify-content-end p-4"
-                type="button"
-                data-bs-target="#carousel2"
-                data-bs-slide="next"
-              >
-                <span className="carousel-control-next-icon" aria-hidden="true">
-                  <i className="fas fa-chevron-right text-dark fa-3x"></i>
-                </span>
-                <span className="visually-hidden">Next</span>
-              </button>
-            </div>
-          </section>
-        </section>
-      </div>
+      <p className="text-dark h1 text-center pt-3">
+        Nos dernières réalisations
+      </p>
+      <Carousel
+        className="mb-5 pb-5 px-5"
+        data-bs-theme="dark"
+      >
+        {trios.map((trio, index) => (
+          <Carousel.Item className="row d-flex g-0" key={index}>
+            {trio.map((realisation, realisationIndex) => (
+              <RealisationDisplayImages
+                key={realisationIndex}
+                text={realisation.text}
+                src={`./image/${realisation.imageFileName}`}
+                title={realisation.title}
+              />
+            ))}
+            <div className="col-1"></div>
+          </Carousel.Item>
+        ))}
+      </Carousel>
     </div>
   );
 }
