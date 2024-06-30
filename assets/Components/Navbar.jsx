@@ -71,7 +71,7 @@ export default function Navbar({ isAuthenticated, onLogout }) {
               {!isAuthenticated && (
                 <li className="nav-item">
                   <NavLink to="/login" className="btn btn-success">
-                    Administration
+                    Connexion
                   </NavLink>
                 </li>
               )}

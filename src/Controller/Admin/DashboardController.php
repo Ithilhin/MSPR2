@@ -51,13 +51,14 @@ class DashboardController extends AbstractDashboardController
     {
         // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
-        yield MenuItem::linkToCrud('Prestations', 'fas fa-list', Prestation::class);
-        yield MenuItem::linkToCrud('Réalisations', 'fas fa-list', Realisation::class);
-        yield MenuItem::linkToCrud('Images des prestations', 'fas fa-list', Image::class);
+        yield MenuItem::linkToCrud('Images pour carroussel', 'fas fa-list', ImageForCarousel::class);
         yield MenuItem::linkToCrud('Textes modifiables', 'fas fa-list', Text::class);
         yield MenuItem::linkToCrud('Clients types', 'fas fa-list', Client::class);
+        yield MenuItem::linkToCrud('Réalisations', 'fas fa-list', Realisation::class);
+        yield MenuItem::linkToCrud('Prestations', 'fas fa-list', Prestation::class);
+        yield MenuItem::linkToCrud('Images des prestations', 'fas fa-list', Image::class);
         yield MenuItem::linkToCrud('Messages', 'fas fa-list', Contact::class);
-        yield MenuItem::linkToCrud('Images pour carroussel', 'fas fa-list', ImageForCarousel::class);
+        
 
 
         // Add a button to go back to the front homepage

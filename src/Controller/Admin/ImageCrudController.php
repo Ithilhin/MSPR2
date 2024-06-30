@@ -46,7 +46,8 @@ class ImageCrudController extends AbstractCrudController
             ImageField::new('src')
                 ->setLabel('Image')
                 ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
-                ->setBasePath('/uploads/images')->setUploadDir('public/uploads/images/'),
+                ->setBasePath('/uploads/images')->setUploadDir('public/uploads/images/')
+                ->setRequired($pageName === Crud::PAGE_NEW), 
             AssociationField::new('prestation')
                 ->setLabel("Prestation associée à l'image"),
             BooleanField::new('active')->setLabel('active')->setHelp('Image affichée dans la page "Prestations"'),

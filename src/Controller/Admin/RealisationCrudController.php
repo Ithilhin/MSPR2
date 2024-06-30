@@ -42,7 +42,8 @@ class RealisationCrudController extends AbstractCrudController
                 ImageField::new('imageFileName')
                     ->setLabel('Photographie')
                     ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
-                    ->setBasePath('/uploads/images')->setUploadDir('public/uploads/images/'),
+                    ->setBasePath('/uploads/images')->setUploadDir('public/uploads/images/')
+                    ->setRequired($pageName === Crud::PAGE_NEW),   
                 TextField::new('title')->setLabel('Titre')->setHelp('Type de réalisation'),
                 TextEditorField::new('text')->setLabel('Description')->setHelp('Description de la réalisation effectuée'),
                 BooleanField::new('active')->setLabel('active')->setHelp("Afficher la réalisation sur la page d'acceuil"),
