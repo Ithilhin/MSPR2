@@ -34,6 +34,7 @@ export default function CarouselDisplay() {
           <div className="h-400 d-flex justify-content-around align-items-center">
             {pair.map((image, imageIndex) => (
               <CarouselDisplayImages
+                key={imageIndex}
                 src={`./image/${image.src}`}
                 alt={`./image/${image.alt}`}
               />
