@@ -142,14 +142,14 @@ class AppFixtures extends Fixture
             $manager->persist($Price);
 
             // Setup Images
-            $image = new Image();
-            $i = $p + 1;
-            $image->setSrc('presta' . $i . '.jpg');
-            $image->setalt("Prestation : " . $prestations[$p]);
-            $image->setTitle("Image prestation " . $i);
-            $image->setPrestation($prestation);
-            $image->setActive(TRUE);
-            $manager->persist($image);
+            // $image = new Image();
+            // $i = $p + 1;
+            // $image->setSrc('presta' . $i . '.jpg');
+            // $image->setalt("Prestation : " . $prestations[$p]);
+            // $image->setTitle("Image prestation " . $i);
+            // $image->setPrestation($prestation);
+            // $image->setActive(TRUE);
+            // $manager->persist($image);
         }
         // Setup Texts
         $page = [

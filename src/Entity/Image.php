@@ -35,6 +35,7 @@ class Image
     private ?string $title = null;
 
     #[ORM\Column]
+    #[Groups(['image_read'])]
     private ?bool $active = null;
 
     public function __toString() {

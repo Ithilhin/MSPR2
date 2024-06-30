@@ -3,7 +3,6 @@ import Fields from "../Components/forms/Fields";
 import { useNavigate } from "react-router-dom";
 import contactsAPI from "../Services/contactsAPI";
 import { toast } from "react-toastify";
-import axios from "axios";
 import Title from "../Components/Title";
 import TextForDisplay from "../Components/TextForDisplay";
 

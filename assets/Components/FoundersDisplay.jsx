@@ -32,7 +32,7 @@ export default function FoundersDisplay() {
                 <div className="col-7 col-xl-3 ">
                   <div className="card h-100 border border-primary">
                     <img
-                      src={`./image/${founder.pictureFileName}`}
+                      src={`./uploads/images/${founder.pictureFileName}`}
                       className="card-img-top"
                     />
                     <div

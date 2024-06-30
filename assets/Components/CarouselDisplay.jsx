@@ -5,7 +5,7 @@ import CarouselDisplayImages from "./CarouselDisplayImages";
 
 export default function CarouselDisplay() {
   const [imagesForCarousel, setImagesForCarousel] = useState([]);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     imagesForCarouselAPI
@@ -19,7 +19,7 @@ export default function CarouselDisplay() {
       })
       .then((data) => setImagesForCarousel(data))
       .catch((error) => console.log(error.response));
-    // setLoading(false);
+    setLoading(false);
   }, []);
 
   const pairs = [];
@@ -29,19 +29,20 @@ export default function CarouselDisplay() {
 
   return (
     <Carousel className="bg-custom-blue h-400">
-      {pairs.map((pair, index) => (
-        <Carousel.Item className="" key={index} interval={3000}>
-          <div className="h-400 d-flex justify-content-around align-items-center">
-            {pair.map((image, imageIndex) => (
-              <CarouselDisplayImages
-                key={imageIndex}
-                src={`./image/${image.src}`}
-                alt={`./image/${image.alt}`}
-              />
-            ))}
-          </div>
-        </Carousel.Item>
-      ))}
+      {(!loading &&
+        pairs.map((pair, index) => (
+          <Carousel.Item className="" key={index} interval={3000}>
+            <div className="h-400 d-flex justify-content-around align-items-center">
+              {pair.map((image, imageIndex) => (
+                <CarouselDisplayImages
+                  key={imageIndex}
+                  src={`./uploads/images/${image.src}`}
+                  alt={image.alt}
+                />
+              ))}
+            </div>
+          </Carousel.Item>
+        ))) || <p>Chargement...</p>}
     </Carousel>
   );
 }
