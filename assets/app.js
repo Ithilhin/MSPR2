@@ -16,6 +16,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrestationsPage from "./Pages/PrestationsPage";
 import Footer from "./Components/Footer";
+import CGU from "./Pages/CGU";
+import CGV from "./Pages/CGV";
+import Legal from "./Pages/Legal";
 
 authAPI.setup();
 axios.defaults.headers["Content-Type"] = "application/ld+json ";
@@ -50,6 +53,9 @@ export default function App() {
                   isAuthenticated ? <AdminRedirect /> : <Navigate to="/login" />
                 }
               />
+              <Route path="/CGU" element={<CGU />} />
+              <Route path="/CGV" element={<CGV />} />
+              <Route path="/Legal" element={<Legal />} />
               <Route path="/aboutUs" element={<AboutUS />} />
               <Route path="/prestations" element={<PrestationsPage />} />
               <Route path="/prices" element={<Prices />} />

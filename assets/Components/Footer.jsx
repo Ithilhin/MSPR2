@@ -7,13 +7,13 @@ export default function Footer() {
         <div className="container">
         <div className="row py-4">
           <h3 className="col text-center fw-bold fs-3">
-            <NavLink className="text-decoration-none text-white" to="#">CGU</NavLink>
+            <NavLink className="text-decoration-none text-white" to="/CGU">CGU</NavLink>
           </h3>
           <h3 className="col text-center fw-bold fs-3">
-            <NavLink className="text-decoration-none text-white" to="#">CGV</NavLink>
+            <NavLink className="text-decoration-none text-white" to="/CGV">CGV</NavLink>
           </h3>
           <h3 className="col text-center fw-bold fs-3">
-            <NavLink className="text-decoration-none text-white" to="#">Mentions légales</NavLink>
+            <NavLink className="text-decoration-none text-white" to="/Legal">Mentions légales</NavLink>
           </h3>
         </div>
 
