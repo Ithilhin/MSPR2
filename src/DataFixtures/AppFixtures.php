@@ -112,7 +112,7 @@ class AppFixtures extends Fixture
         }
 
         // Setup prestations + Prices + images
-        for ($p = 0; $p < 5; $p++) {
+        for ($p = 1; $p < 6; $p++) {
             $prestation = new Prestation();
             $Price = new Prices();
             $prestations = [
@@ -122,7 +122,7 @@ class AppFixtures extends Fixture
                 'Élagage/Abattage',
                 'Valorisation'
             ];
-            $prestation->setTitle($prestations[$p]);
+            $prestation->setTitle($prestations[$p-1]);
             $manager->persist($prestation);
 
             // Setup Prices
@@ -142,14 +142,15 @@ class AppFixtures extends Fixture
             $manager->persist($Price);
 
             // Setup Images
-            // $image = new Image();
-            // $i = $p + 1;
-            // $image->setSrc('presta' . $i . '.jpg');
-            // $image->setalt("Prestation : " . $prestations[$p]);
-            // $image->setTitle("Image prestation " . $i);
-            // $image->setPrestation($prestation);
-            // $image->setActive(TRUE);
-            // $manager->persist($image);
+            for ($i = 1; $i < 6; $i++) {
+                $image = new Image();
+                $image->setSrc('presta' .$p.$i . '.jpg');
+                $image->setalt("Prestation : " . $prestations[$p-1]);
+                $image->setTitle("Image prestation " .$p.$i);
+                $image->setPrestation($prestation);
+                $image->setActive(TRUE);
+                $manager->persist($image);
+            }
         }
         // Setup Texts
         $page = [
