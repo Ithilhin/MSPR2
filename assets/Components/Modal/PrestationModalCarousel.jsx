@@ -1,41 +1,40 @@
 import React, { useEffect, useState } from "react";
-import imagesForCarouselAPI from "../../Services/imageForCarouselAPI";
+import imagesAPI from "../../Services/imageAPI";
 import Carousel from "react-bootstrap/Carousel";
 import PrestationModalCarouselImages from "./PrestationModalCarouselImages";
 
-export default function PrestaionModalCarousel() {
-  const [imagesForCarousel, setImagesForCarousel] = useState([]);
+export default function PrestaionModalCarousel({ prestation}) {
+  const [images, setImages] = useState([]);
   // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    imagesForCarouselAPI
-      .getImagesForCarousel()
+    imagesAPI
+      .getImages()
       .then((data) => {
         const filteredData = data.filter((image) => {
-          return image.active;
+            
+            
+            return  prestation === image.prestation.title;
         });
-        console.log("from useEffect in Carousel: filtered data", filteredData);
         return filteredData;
       })
-      .then((data) => setImagesForCarousel(data))
+      .then((data) => setImages(data))
       .catch((error) => console.log(error.response));
     // setLoading(false);
   }, []);
 
   return (
-    <Carousel className="h-400">
-    {imagesForCarousel.map((image, index) => (
-      <Carousel.Item className="" interval={2000}>
-        <div className="h-400 d-flex justify-content-around align-items-center">
-                      <PrestationModalCarouselImages
-              key={index}
+    <Carousel className="h-400" data-bs-theme="dark">
+      {images.map((image, index) => (
+        <Carousel.Item key={index} className="text-primary" interval={2000}>
+          <div className="h-400 d-flex justify-content-around align-items-center">
+            <PrestationModalCarouselImages
               src={`./image/${image.src}`}
               alt={`./image/${image.alt}`}
             />
-        </div>
-        
-      </Carousel.Item>
-    ))}
+          </div>
+        </Carousel.Item>
+      ))}
     </Carousel>
   );
 }

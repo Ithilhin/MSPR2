@@ -19,6 +19,7 @@ class Image
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['image_read'])]
     private ?string $src = null;
 
     #[ORM\Column(length: 255)]

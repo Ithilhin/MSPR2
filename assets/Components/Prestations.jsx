@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import PrestationsCards from "./PrestationsCards";
 import PrestationsAPI from "../Services/PrestationsAPI";
-import Button from "react-bootstrap/Button";
 import PrestationsModal from "./Modal/PrestationsModal";
 
 export default function Prestations() {
@@ -33,7 +32,7 @@ export default function Prestations() {
         style={{ overflow: "hidden" }}
       >
         {prestations.map((prestation, index) => (
-          <PrestationsCards title={prestation.title} index={index} />
+          <PrestationsCards key={index} title={prestation.title} index={index} />
         ))}
       </div>
       <PrestationsModal
