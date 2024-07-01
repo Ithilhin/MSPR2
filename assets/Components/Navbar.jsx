@@ -32,11 +32,10 @@ export default function Navbar({ isAuthenticated, onLogout }) {
             <ul className="navbar-nav m-auto">
               <li className="nav-item">
                 {/* TODO: inserer logo Canopées */}
-                <NavLink className="nav-link active" to="/">
+                <NavLink className="nav-link" to="/">
                   <img className="rounded-circle logo"
                 src="./image/logo.png"
                 alt="logo canopée" />
-                  <span className="visually-hidden">(current)</span>
                 </NavLink>
               </li>
               <li className="nav-item">

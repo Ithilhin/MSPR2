@@ -36,20 +36,22 @@ export default function RealisationDisplay() {
       <Carousel
         className="mb-5 pb-5 px-5"
         data-bs-theme="dark"
+        interval={null}
       >
-        {trios.map((trio, index) => (
-          <Carousel.Item className="row d-flex g-0" key={index}>
-            {!loading && trio.map((realisation, realisationIndex) => (
+        {console.log(trios)}
+        {!loading && trios.map((trio, index) => (
+          <Carousel.Item className="d-flex" key={index} >
+            { trio.map((realisation, realisationIndex) => (
               <RealisationDisplayImages
                 key={realisationIndex}
                 text={realisation.text}
                 src={`./uploads/images/${realisation.imageFileName}`}
                 title={realisation.title}
               />
-            )) || <p>Chargement...</p>}
+            )) }
             <div className="col-1"></div>
           </Carousel.Item>
-        ))}
+        ))|| <p>Chargement...</p>}
       </Carousel>
     </div>
   );
