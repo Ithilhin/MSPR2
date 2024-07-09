@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import textsAPI from "../Services/textsAPI";
 
-export default function aTextForDisplay({ page }) {
+export default function TextForDisplay({ page }) {
   const [texts, setTexts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -10,7 +10,8 @@ export default function aTextForDisplay({ page }) {
       .getTexts()
       .then((data) => {
         const filteredData = data.filter((text) => {
-          return text.page === page;
+          console.log("from useEffect in TextForDisplay", text.page, page);
+          return text.Page === page;
         });
 
         return filteredData;
@@ -18,11 +19,12 @@ export default function aTextForDisplay({ page }) {
       .then((data) => setTexts(data))
       .catch((error) => console.log(error.response));
     setLoading(false);
+    console.log("from useEffect in TextForDisplay", texts);
   }, []);
 
   return (
     <>
-      {/* {console.log("from return in TextForDisplay", texts)} */}
+      {console.log("from return in TextForDisplay", texts)}
       {loading ? (
         <p>Chargement...</p>
       ) : (

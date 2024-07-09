@@ -12,7 +12,7 @@ async function getTexts() {
     .then((response) => {
       const texts = response.data["hydra:member"];
       Cache.set("texts", texts);
-      
+      console.log("from textsAPI", texts);
       return texts;
     })
     .catch((error) => console.log(error.response));
