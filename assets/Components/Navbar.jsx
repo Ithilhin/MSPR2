@@ -9,7 +9,7 @@ export default function Navbar({ isAuthenticated, onLogout }) {
     authAPI.logout();
     onLogout(false);
     toast.info("Vous êtes déconnecté");
-    navigate("/login",{replace:true});
+    navigate("/logoutAdmin",{replace:true});
   };
   
 

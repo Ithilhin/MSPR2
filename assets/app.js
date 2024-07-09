@@ -10,6 +10,7 @@ import Prices from "./Pages/PricesPage";
 import LoginPage from "./Pages/LoginPage";
 import authAPI from "./Services/authAPI";
 import AdminRedirect from "./Components/AdminRedirect";
+import LogoutRedirect from "./Components/LogoutRedirect";
 import ContactFormPage from "./Pages/ContactFormPage";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -41,6 +42,12 @@ export default function App() {
               <Route
                 path="/login"
                 element={<LoginPage onLogin={setIsAuthenticated} />}
+              />
+              <Route
+                path="/logoutAdmin"
+                element={
+                   <LogoutRedirect />
+                }
               />
               <Route
                 path="/logout"
