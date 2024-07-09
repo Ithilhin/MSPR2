@@ -29,7 +29,7 @@ export default function Navbar({ isAuthenticated, onLogout }) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarColor01">
-            <ul className="navbar-nav m-auto">
+            <ul className="navbar-nav m-auto align-items-center">
               <li className="nav-item">
                 {/* TODO: inserer logo Canopées */}
                 <NavLink className="nav-link" to="/">
