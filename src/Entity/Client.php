@@ -36,13 +36,6 @@ class Client
     #[Groups(["clients_read"])]
     private ?bool $active = null;
 
-    // exemple de méthode calculée
-    // #[Groups(['clients_read'])]
-    // public function getcalculateDoubleId(): int
-    // {
-    //     return $this->id * 2;
-    // }
-
 
     public function getId(): ?int
     {

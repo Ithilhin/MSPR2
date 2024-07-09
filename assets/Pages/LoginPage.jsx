@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import authAPI from "../Services/authAPI";
 import { useNavigate } from "react-router-dom";
 import Fields from "../Components/forms/Fields";
@@ -35,7 +35,7 @@ export default function LoginPage({ onLogin }) {
     try {
       const response = await authAPI.authenticate(credentials);
       console.log("response", response);
-      toast.success("Vous êtes désormais connecté");
+      toast.success("Vous êtes désormais connecté, redirection vers l'espace administrateur");
       setError("");
       onLogin(true);
       console.log("token inside try", token);
@@ -53,7 +53,7 @@ export default function LoginPage({ onLogin }) {
 
   return (
     <div className="container d-flex flex-column">
-      <Title text={"Connectez-vous pour accéder à l'espace administration"}/>
+      <Title text={"Connectez-vous pour accéder à l'espace administration"} />
       <form onSubmit={handleSubmit}>
         <Fields
           label="Adresse email"

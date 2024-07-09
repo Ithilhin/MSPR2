@@ -8,34 +8,18 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\ApiFilter;
-use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-// Configuration de la ressource API
-// #[ApiResource(paginationEnabled: true, paginationItemsPerPage: 50, order: ['email' => 'ASC'])]
+
 #[ApiResource(
-    normalizationContext: ['groups' => ['users_read']],
-    // denormalizationContext: ['groups' => ['users_write']],
-    // operations: [
-    //     new Get(
-    //         uriTemplate: '/utilisateurs/{id}'
-    //     ),
-    //     new GetCollection()
-    // ]
+    normalizationContext: ['groups' => ['users_read']], 
 )]
-// #[ApiFilter(SearchFilter::class, properties: ['firstName' => 'partial'])]
-// #[ApiFilter(SearchFilter::class)]
-// #[ApiFilter(OrderFilter::class)]
+
 #[UniqueEntity(fields: ['email'], message: 'Cet email est déjà utilisé')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {

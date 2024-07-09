@@ -40,8 +40,6 @@ export default function Prestations() {
         onHide={() => setModalShow(false)}
         prestation={prestation}
       />
-      {/* TODO : add animation on darkbackground */}
-      {/* TODO: add modal */}
     </div>
   );
 }

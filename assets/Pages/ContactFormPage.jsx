@@ -42,7 +42,7 @@ export default function ContactFormPage() {
       const { violations } = error.response.data;
       if (violations) {
         const apiErrors = {};
-        violations.map(({propertyPath, message}) => {
+        violations.map(({ propertyPath, message }) => {
           apiErrors[propertyPath] = message;
         });
         setErrors(apiErrors);
@@ -122,7 +122,7 @@ export default function ContactFormPage() {
       <div className="d-flex justify-content-end">
         <button className="btn btn-success col-6 mt-3">Envoyer</button>
       </div>
-      <TextForDisplay page={"Contact"}/>
+      <TextForDisplay page={"Contact"} />
     </form>
   );
 }
