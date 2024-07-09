@@ -1,7 +1,7 @@
 import  { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const LogoutRedirect = () => {
+const LogoutToEasyAdmin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -11,4 +11,4 @@ const LogoutRedirect = () => {
   return null; 
 };
 
-export default LogoutRedirect;
+export default LogoutToEasyAdmin;

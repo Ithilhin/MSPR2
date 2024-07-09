@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import authAPI from '../Services/authAPI'; // Adjust the import path as necessary
+import authAPI from '../Services/authAPI'; 
+import { toast } from "react-toastify";
 
-function Logout({ onLogout }) {
+function LogoutFromEasyAdmin({ onLogout }) {
     const navigate = useNavigate();
     const [isLoggedOut, setIsLoggedOut] = useState(false);
 
@@ -16,6 +17,7 @@ function Logout({ onLogout }) {
     useEffect(() => {
         if (isLoggedOut && !authAPI.isAuthenticated()) {
             navigate("/", { replace: true });
+            toast.info("Vous êtes déconnecté");
         }
     }, [isLoggedOut, navigate]);
 
@@ -23,4 +25,4 @@ function Logout({ onLogout }) {
     return <div>Logging out...</div>;
 }
 
-export default Logout;
+export default LogoutFromEasyAdmin;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/app.css";
 import Navbar from "./Components/Navbar";
-import Logout from "./Components/Logout";
+import LogoutFromEasyAdmin from "./Components/LogoutFromEasyAdmin";
 import Homepage from "./Pages/Homepage";
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import AboutUS from "./Pages/AboutUSPage";
@@ -10,7 +10,7 @@ import Prices from "./Pages/PricesPage";
 import LoginPage from "./Pages/LoginPage";
 import authAPI from "./Services/authAPI";
 import AdminRedirect from "./Components/AdminRedirect";
-import LogoutRedirect from "./Components/LogoutRedirect";
+
 import ContactFormPage from "./Pages/ContactFormPage";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,6 +20,7 @@ import Footer from "./Components/Footer";
 import CGU from "./Pages/CGU";
 import CGV from "./Pages/CGV";
 import Legal from "./Pages/Legal";
+import LogoutToEasyAdmin from "./Components/LogoutToEasyAdmin";
 
 authAPI.setup();
 axios.defaults.headers["Content-Type"] = "application/ld+json ";
@@ -46,12 +47,12 @@ export default function App() {
               <Route
                 path="/logoutAdmin"
                 element={
-                   <LogoutRedirect />
+                   <LogoutToEasyAdmin />
                 }
               />
               <Route
                 path="/logout"
-                element={<Logout onLogout={setIsAuthenticated} />}
+                element={<LogoutFromEasyAdmin onLogout={setIsAuthenticated} />}
               />
 
               <Route
