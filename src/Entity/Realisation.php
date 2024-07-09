@@ -6,10 +6,14 @@ use App\Repository\RealisationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RealisationRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['realisations_read']],
+    denormalizationContext: ['groups' => ['realisations_write']],
+)]
 class Realisation
 {
     #[ORM\Id]
@@ -18,18 +22,22 @@ class Realisation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["realisations_read"])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(["realisations_read"])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $text = null;
 
     #[ORM\Column]
+    #[Groups(["realisations_read"])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?bool $active = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["realisations_read"])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $imageFileName = null;
 

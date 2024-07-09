@@ -6,10 +6,14 @@ use App\Repository\TextRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TextRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['texts_read']],
+    denormalizationContext: ['groups' => ['texts_write']],
+)]
 class Text
 {
     #[ORM\Id]
@@ -18,10 +22,12 @@ class Text
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["texts_read"])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $Page = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(["texts_read"])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $text = null;
 

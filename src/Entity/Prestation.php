@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: PrestationRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['prestations_read']],
+    denormalizationContext: ['groups' => ['prestations_write']],
 )]
 class Prestation
 {

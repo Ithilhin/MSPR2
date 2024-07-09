@@ -6,9 +6,13 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ImageForCarouselRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ImageForCarouselRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['image_for_carousel_read']],
+    denormalizationContext: ['groups' => ['image_for_carousel_write']],
+)]
 class ImageForCarousel
 {
     #[ORM\Id]
@@ -17,14 +21,16 @@ class ImageForCarousel
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["image_for_carousel_read"])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $src = null;
 
     #[ORM\Column]
+    #[Groups(["image_for_carousel_read"])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?bool $active = null;
 
-    #[ORM\Column(length: 255)]
+    #[Groups(["image_for_carousel_read"])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $alt = null;
 

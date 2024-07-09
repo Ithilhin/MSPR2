@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: PricesRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['prices_read']],
+    denormalizationContext: ['groups' => ['prices_write']],
 )]
 class Prices
 {
