@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PrestationRepository::class)]
 #[ApiResource(
@@ -22,6 +23,7 @@ class Prestation
 
     #[ORM\Column(length: 255)]
     #[Groups(['prestations_read','prices_read','image_read'])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $title = null;
 
     #[ORM\OneToOne(mappedBy: 'prestation', cascade: ['persist', 'remove'])]

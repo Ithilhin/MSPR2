@@ -6,10 +6,14 @@ use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['contacts_read']],
+    denormalizationContext: ['groups' => ['contacts_write']],
+)]
 class Contact
 {
     #[ORM\Id]
@@ -18,18 +22,22 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+
     #[Assert\NotBlank(message: 'Veuillez saisir un nom')]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
+
     #[Assert\NotBlank(message: 'Veuillez saisir un prénom')]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
+
     #[Assert\NotBlank(message: 'Veuillez saisir un email')]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+
     #[Assert\NotBlank(message: 'Veuillez saisir un numéro de téléphone')]
     private ?string $tel = null;
 

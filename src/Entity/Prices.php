@@ -6,6 +6,7 @@ use App\Repository\PricesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PricesRepository::class)]
 #[ApiResource(
@@ -20,14 +21,17 @@ class Prices
 
     #[ORM\Column]
     #[Groups(['prices_read'])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?float $minPrice = null;
 
     #[ORM\Column]
     #[Groups(['prices_read'])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?float $meanPrice = null;
 
     #[ORM\Column]
     #[Groups(['prices_read'])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?float $maxPrice = null;
 
     #[ORM\OneToOne(inversedBy: 'prices', cascade: ['persist', 'remove'])]

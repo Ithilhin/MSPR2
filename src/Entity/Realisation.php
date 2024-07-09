@@ -6,6 +6,7 @@ use App\Repository\RealisationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RealisationRepository::class)]
 #[ApiResource]
@@ -17,15 +18,19 @@ class Realisation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $text = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?bool $active = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $imageFileName = null;
 
     

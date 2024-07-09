@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ApiResource(
@@ -26,14 +27,17 @@ class Client
 
     #[ORM\Column(length: 255)]
     #[Groups(["clients_read"])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $type = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Groups(["clients_read"])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $description = null;
 
     #[ORM\Column]
     #[Groups(["clients_read"])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?bool $active = null;
 
 

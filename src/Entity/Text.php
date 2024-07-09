@@ -6,6 +6,7 @@ use App\Repository\TextRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TextRepository::class)]
 #[ApiResource]
@@ -17,9 +18,11 @@ class Text
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $Page = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $text = null;
 
     public function getId(): ?int

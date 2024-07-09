@@ -6,10 +6,12 @@ use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['image_read']],
+    denormalizationContext: ['groups' => ['image_write']],
 )]
 class Image
 {
@@ -20,10 +22,12 @@ class Image
 
     #[ORM\Column(length: 255)]
     #[Groups(['image_read'])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $src = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['image_read'])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $alt = null;
 
     #[ORM\ManyToOne(inversedBy: 'images')]
@@ -32,10 +36,12 @@ class Image
 
     #[ORM\Column(length: 255)]
     #[Groups(['image_read'])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $title = null;
 
     #[ORM\Column]
     #[Groups(['image_read'])]
+    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?bool $active = null;
 
     public function __toString() {
