@@ -4,8 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Contact;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -43,4 +45,10 @@ class ContactCrudController extends AbstractCrudController
                 TextEditorField::new('message')->setLabel('Message')->setHelp('Message du client'),             
             ];
         }
+        public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            // Disable the 'new' action to remove the ability to create new Prestations
+            ->disable(Action::NEW);
+    }
 }

@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Text;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -47,5 +49,11 @@ class TextCrudController extends AbstractCrudController
 
 
         ];
+    }
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            // Disable the 'new' action to remove the ability to create new Prestations
+            ->disable(Action::NEW);
     }
 }
