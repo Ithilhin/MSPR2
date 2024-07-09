@@ -9,9 +9,8 @@ export default function Navbar({ isAuthenticated, onLogout }) {
     authAPI.logout();
     onLogout(false);
     toast.info("Vous êtes déconnecté");
-    navigate("/logoutAdmin",{replace:true});
+    navigate("/logoutAdmin", { replace: true });
   };
-  
 
   return (
     <>
@@ -33,9 +32,11 @@ export default function Navbar({ isAuthenticated, onLogout }) {
               <li className="nav-item">
                 {/* TODO: inserer logo Canopées */}
                 <NavLink className="nav-link" to="/">
-                  <img className="rounded-circle logo"
-                src="./image/logo.png"
-                alt="logo canopée" />
+                  <img
+                    className="rounded-circle logo"
+                    src="./image/logo.png"
+                    alt="logo canopée"
+                  />
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -58,12 +59,13 @@ export default function Navbar({ isAuthenticated, onLogout }) {
                   Contact
                 </NavLink>
               </li>
-              {isAuthenticated && <li className="nav-item">
-                <NavLink className="nav-link" to="admin">
-                  Administration
-                </NavLink>
-              </li>}
-
+              {isAuthenticated && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="admin">
+                    Administration
+                  </NavLink>
+                </li>
+              )}
             </ul>
             {/* TODO: aligner les bouttons */}
             <ul className="navbar-nav ml-auto">
