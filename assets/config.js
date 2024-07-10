@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:8000/api/";
+export const API_URL = "https://indigo-meerkat-492757.hostingersite.com/api/";
 
 export const PRICES_API = API_URL + "pricess";
 export const CLIENT_API = API_URL + "clients";
