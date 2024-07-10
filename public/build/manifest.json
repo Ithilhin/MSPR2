@@ -1,6 +1,6 @@
 {
-  "build/app.css": "/build/app.761748ee.css",
-  "build/app.js": "/build/app.7a63ff97.js",
-  "build/runtime.js": "/build/runtime.4bfd2643.js",
-  "build/776.6b5a416f.js": "/build/776.6b5a416f.js"
+  "public/build/app.css": "public/build/app.761748ee.css",
+  "public/build/app.js": "public/build/app.7a63ff97.js",
+  "public/build/runtime.js": "public/build/runtime.4bfd2643.js",
+  "public/build/776.6b5a416f.js": "public/build/776.6b5a416f.js"
 }
