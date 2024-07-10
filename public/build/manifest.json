@@ -1,6 +1,7 @@
 {
-  "public/build/app.css": "public/build/app.761748ee.css",
-  "public/build/app.js": "public/build/app.11d6af31.js",
-  "public/build/runtime.js": "public/build/runtime.4bfd2643.js",
-  "public/build/776.6b5a416f.js": "public/build/776.6b5a416f.js"
+  "build/app.css": "http://localhost:8080/build/app.css",
+  "build/app.js": "http://localhost:8080/build/app.js",
+  "build/runtime.js": "http://localhost:8080/build/runtime.js",
+  "build/vendors-node_modules_react-toastify_dist_ReactToastify_css-node_modules_react-bootstrap_esm_B-633ffd.css": "http://localhost:8080/build/vendors-node_modules_react-toastify_dist_ReactToastify_css-node_modules_react-bootstrap_esm_B-633ffd.css",
+  "build/vendors-node_modules_react-toastify_dist_ReactToastify_css-node_modules_react-bootstrap_esm_B-633ffd.js": "http://localhost:8080/build/vendors-node_modules_react-toastify_dist_ReactToastify_css-node_modules_react-bootstrap_esm_B-633ffd.js"
 }
