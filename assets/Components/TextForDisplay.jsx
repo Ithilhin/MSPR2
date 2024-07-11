@@ -31,7 +31,7 @@ export default function TextForDisplay({ page }) {
         texts.map((text, index) => (
           <div key={index} className="text-container">
             <p
-              className="my-5"
+              className="m-5 mt-0"
               dangerouslySetInnerHTML={{ __html: text.text }}
             ></p>
           </div>

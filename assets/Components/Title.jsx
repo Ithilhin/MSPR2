@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Title({text}) {
   return (
-    <div className="d-flex flex-column align-items-center pb-5">
+    <div className="d-flex flex-column align-items-center pb-3">
       <img
         className="col-12 col-md-8 col-xl-6 mt-3"
         src="./image/logo-canopees.png"
