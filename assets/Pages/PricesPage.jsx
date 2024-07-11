@@ -18,10 +18,10 @@ export default function Prices() {
   return (
     <div className="container d-flex justify-content-center align-items-center row m-auto">
       <Title text={"Nos Tarifs"} />
-      <div className="container my-5">
+      <div className="container my-5 table-responsive">
         <table className="table table-hover">
           <thead>
-            <tr>
+            <tr className="">
               <th>Opérations</th>
               <th className="text-center">Prix minimum/h</th>
               <th className="text-center">Prix moyen/h</th>
@@ -30,7 +30,7 @@ export default function Prices() {
           </thead>
           {!loading && <tbody>
             {prices.map((price, index) => (
-              <tr key={index}>
+              <tr className="" key={index}>
                 <td>{price.prestation.title}</td>
                 <td className="text-center">
                   {price.minPrice.toFixed(2).toLocaleString()} €
