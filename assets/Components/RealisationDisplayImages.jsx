@@ -4,7 +4,7 @@ export default function RealisationDisplayImages({ src, text, title }) {
   return (
     <>
       <div className="col-1"></div>
-      <div className="col py-3">
+      <div className="col my-3">
         <div className="card border border-primary h-100">
           <img
             src={src}

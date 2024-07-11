@@ -28,8 +28,8 @@ export default function FoundersDisplay() {
           ) : (
             founders.map((founder, index) => (
               <React.Fragment key={index}>
-                <div className="d-none d-xl-block col-xl-2"></div>
-                <div className="col-7 col-xl-3 ">
+                <div className="d-none d-lg-block col-lg-2"></div>
+                <div className="col-7 my-3 col-lg-3 ">
                   <div className="card h-100 border border-primary">
                     <img
                       src={`./uploads/images/${founder.pictureFileName}`}
@@ -54,7 +54,7 @@ export default function FoundersDisplay() {
               </React.Fragment>
             ))
           )}
-          <div className="d-none d-xl-block col-xl-2"></div>
+          <div className="d-none d-lg-block col-lg-2"></div>
         </div>
       </div>
     </div>
