@@ -11,15 +11,15 @@ export default function PrestationsModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">
+      <Modal.Header className="bg-primary">
+        <Modal.Title id="contained-modal-title-vcenter" className="text-white">
           {props.prestation}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <PrestationModalCarousel prestation={props.prestation} />
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer className="bg-primary">
         <Button className="btn-danger" onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
