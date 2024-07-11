@@ -209,24 +209,24 @@ class AppFixtures extends Fixture
         $realisation3->setActive(TRUE);
         $realisation3->setImageFileName('rea3.jpg');
         $manager->persist($realisation3);
-        // $realisation4 = new Realisation();
-        // $realisation4->setTitle("JARDIN À MURETS ET PAREMENT EN PIERRE ÉTAGÉS");
-        // $realisation4->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio");
-        // $realisation4->setActive(TRUE);
-        // $realisation4->setImageFileName('rea2.jpg');
-        // $manager->persist($realisation4);
-        // $realisation5 = new Realisation();
-        // $realisation5->setTitle("AMÉNAGEMENT DE JARDIN À SAINT AMAND LES EAUX");
-        // $realisation5->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut e");
-        // $realisation5->setActive(TRUE);
-        // $realisation5->setImageFileName('rea3.jpg');
-        // $manager->persist($realisation5);
-        // $realisation6 = new Realisation();
-        // $realisation6->setTitle("RÉNOVATION : UN JARDIN PROVENCAL SE REDÉPLOIE AUTOUR DE SON MAS");
-        // $realisation6->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu");
-        // $realisation6->setActive(TRUE);
-        // $realisation6->setImageFileName('rea1.jpg');
-        // $manager->persist($realisation6);
+        $realisation4 = new Realisation();
+        $realisation4->setTitle("JARDIN À MURETS ET PAREMENT EN PIERRE ÉTAGÉS");
+        $realisation4->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio");
+        $realisation4->setActive(TRUE);
+        $realisation4->setImageFileName('rea2.jpg');
+        $manager->persist($realisation4);
+        $realisation5 = new Realisation();
+        $realisation5->setTitle("AMÉNAGEMENT DE JARDIN À SAINT AMAND LES EAUX");
+        $realisation5->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut e");
+        $realisation5->setActive(TRUE);
+        $realisation5->setImageFileName('rea3.jpg');
+        $manager->persist($realisation5);
+        $realisation6 = new Realisation();
+        $realisation6->setTitle("RÉNOVATION : UN JARDIN PROVENCAL SE REDÉPLOIE AUTOUR DE SON MAS");
+        $realisation6->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu");
+        $realisation6->setActive(TRUE);
+        $realisation6->setImageFileName('rea1.jpg');
+        $manager->persist($realisation6);
 
         // Setup Images for Carousel
         for ($i = 0; $i < 4; $i++) {
