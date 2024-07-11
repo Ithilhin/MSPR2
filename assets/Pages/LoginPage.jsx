@@ -35,12 +35,14 @@ export default function LoginPage({ onLogin }) {
     try {
       const response = await authAPI.authenticate(credentials);
       console.log("response", response);
-      toast.success("Vous êtes désormais connecté, redirection vers l'espace administrateur");
+      toast.success("Vous êtes désormais connecté, redirection vers l'espace administrateur, merci de patienter...");
       setError("");
       onLogin(true);
       console.log("token inside try", token);
       accessAdminSpace();
-      navigate("/admin", { replace: true });
+      setTimeout(() => {
+        navigate("/admin", { replace: true });
+      }, 1000); 
     } catch (error) {
       setError("Les informations fournies ne sont pas correctes");
       toast.error("Une erreur est survenue");
