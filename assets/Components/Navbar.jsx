@@ -66,14 +66,14 @@ export default function Navbar({ isAuthenticated, onLogout }) {
             </ul>
             <ul className="navbar-nav m-auto">
               {!isAuthenticated && (
-                <li className="nav-item m-auto m-lg-0">
+                <li className="nav-item mt-3 m-auto m-lg-0">
                   <NavLink to="/login" className="btn btn-success">
                     Connexion
                   </NavLink>
                 </li>
               )}
               {isAuthenticated && (
-                <li className="nav-item">
+                <li className="nav-item mt-3 m-auto m-lg-0">
                   <button onClick={handleLogout} className="btn btn-danger">
                     Deconnexion
                   </button>
