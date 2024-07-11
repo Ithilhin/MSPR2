@@ -9,10 +9,16 @@ export default function Prices() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    pricesAPI.getPrices()
-      .then((data) => setPrices(data))
-      .catch((error) => console.log(error.response)); 
-    setLoading(false);
+    pricesAPI
+      .getPrices()
+      .then((data) => {
+        setPrices(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.response);
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -28,24 +34,26 @@ export default function Prices() {
               <th className="text-center">Prix maximum/h</th>
             </tr>
           </thead>
-          {!loading && <tbody>
-            {prices.map((price, index) => (
-              <tr className="" key={index}>
-                <td>{price.prestation.title}</td>
-                <td className="text-center">
-                  {price.minPrice.toFixed(2).toLocaleString()} €
-                </td>
-                <td className="text-center">
-                  {price.meanPrice.toFixed(2).toLocaleString()} €
-                </td>
-                <td className="text-center">
-                  {price.maxPrice.toFixed(2).toLocaleString()} €
-                </td>
-              </tr>
-            ))}
-          </tbody>}
+          {!loading && (
+            <tbody>
+              {prices.map((price, index) => (
+                <tr className="" key={index}>
+                  <td>{price.prestation.title}</td>
+                  <td className="text-center">
+                    {price.minPrice.toFixed(2).toLocaleString()} €
+                  </td>
+                  <td className="text-center">
+                    {price.meanPrice.toFixed(2).toLocaleString()} €
+                  </td>
+                  <td className="text-center">
+                    {price.maxPrice.toFixed(2).toLocaleString()} €
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
+          {loading && <TableLoader />}
         </table>
-        {loading && <TableLoader />}
       </div>
       <TextForDisplay page={"Tarifs"} />
     </div>

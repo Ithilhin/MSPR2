@@ -3,21 +3,27 @@ import { useEffect, useState } from "react";
 import PrestationsCards from "./PrestationsCards";
 import PrestationsAPI from "../Services/PrestationsAPI";
 import PrestationsModal from "./Modal/PrestationsModal";
+import ImageLoader from "./loaders/ImageLoader";
 
 export default function Prestations() {
   const [prestations, setPrestations] = useState([]);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     PrestationsAPI.getPrestations()
-      .then((data) => setPrestations(data))
-      .catch((error) => console.log(error.response));
-    setLoading(false);
-  }, []);
+    .then((data) => {
+      setPrestations(data);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.log(error.response);
+      setLoading(false);
+    });
+}, []);
 
   const [modalShow, setModalShow] = React.useState(false);
   const [prestation, setPrestation] = React.useState("");
-
   return (
     <div>
       {console.log(prestations)}
@@ -33,7 +39,7 @@ export default function Prestations() {
       >
         {!loading && prestations.map((prestation, index) => (
           <PrestationsCards key={index} title={prestation.title} index={index} />
-        )) || <p>Chargement...</p>}
+        )) || <ImageLoader/>}
       </div>
       <PrestationsModal
         show={modalShow}
