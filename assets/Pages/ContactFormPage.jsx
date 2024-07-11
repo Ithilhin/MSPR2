@@ -28,6 +28,7 @@ export default function ContactFormPage() {
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
     setContact({ ...contact, [name]: value });
+    console.log(contact);
   };
 
   const handleSubmit = async (e) => {
@@ -42,7 +43,7 @@ export default function ContactFormPage() {
       const { violations } = error.response.data;
       if (violations) {
         const apiErrors = {};
-        violations.map(({ propertyPath, message }) => {
+        violations.forEach(({ propertyPath, message }) => {
           apiErrors[propertyPath] = message;
         });
         setErrors(apiErrors);

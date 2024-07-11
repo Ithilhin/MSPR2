@@ -22,26 +22,27 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-
+    #[Groups(['contacts_write'])]
     #[Assert\NotBlank(message: 'Veuillez saisir un nom')]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
-
+    #[Groups(['contacts_write'])]
     #[Assert\NotBlank(message: 'Veuillez saisir un prénom')]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-
+    #[Groups(['contacts_write'])]
     #[Assert\NotBlank(message: 'Veuillez saisir un email')]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-
+    #[Groups(['contacts_write'])]
     #[Assert\NotBlank(message: 'Veuillez saisir un numéro de téléphone')]
     private ?string $tel = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['contacts_write'])]
     #[Assert\NotBlank(message: 'Veuillez saisir un message')]
     private ?string $message = null;
 
