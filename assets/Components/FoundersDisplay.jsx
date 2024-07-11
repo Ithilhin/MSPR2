@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import foundersAPI from "../Services/foundersAPI";
+import ImageLoaderBig from "./loaders/ImageLoaderBig";
 
 export default function FoundersDisplay() {
   const [founders, setFounders] = useState([]);
@@ -15,16 +16,18 @@ export default function FoundersDisplay() {
         return filteredData;
       })
       .then((data) => setFounders(data))
-      .catch((error) => console.log(error.response));
-    setLoading(false);
+      .catch((error) => console.log(error.response))
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
     <div>
       <div className="container my-4">
-        <div className="row g-0 d-flex justify-content-center">
+        <div className="row g-0 d-flex justify-content-center align-items-center">
           {loading ? (
-            <p>Chargement...</p>
+            <p className="d-flex justify-content-center align-items-center"><ImageLoaderBig/></p>
           ) : (
             founders.map((founder, index) => (
               <React.Fragment key={index}>

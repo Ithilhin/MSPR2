@@ -52,8 +52,9 @@ export default function Prices() {
               ))}
             </tbody>
           )}
-          {loading && <TableLoader />}
+          
         </table>
+        {loading && <div className="d-flex justify-content-center"><TableLoader/></div>}
       </div>
       <TextForDisplay page={"Tarifs"} />
     </div>

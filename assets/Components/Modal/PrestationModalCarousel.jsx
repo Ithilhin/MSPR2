@@ -19,8 +19,10 @@ export default function PrestaionModalCarousel({ prestation}) {
         return filteredData;
       })
       .then((data) => setImages(data))
-      .catch((error) => console.log(error.response));
-    setLoading(false);
+      .catch((error) => console.log(error.response))
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (

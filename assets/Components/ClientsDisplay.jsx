@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import clientsAPI from "../Services/clientsAPI";
+import CardLoader from "./loaders/CardLoader";
 
 export default function ClientsDisplay() {
   const [clients, setClients] = useState([]);
@@ -15,8 +16,10 @@ export default function ClientsDisplay() {
         return filteredData;
       })
       .then((data) => setClients(data))
-      .catch((error) => console.log(error.response));
-    setLoading(false);
+      .catch((error) => console.log(error.response))
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -53,7 +56,7 @@ export default function ClientsDisplay() {
                       <div className="d-none d-lg-block col-lg-1"></div>
                     )}
                   </React.Fragment>
-                ))}
+                )) || <p className="d-flex justify-content-center mt-3"><CardLoader/></p>}
             </div>
           </div>
         </div>

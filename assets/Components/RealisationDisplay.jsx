@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import realisationsAPI from "../Services/realisationsAPI";
 import Carousel from "react-bootstrap/Carousel";
 import RealisationDisplayImages from "./RealisationDisplayImages";
+import RealisationLoader from "./loaders/RealisationsLoader";
 
 export default function RealisationDisplay() {
   const [realisations, setRealisations] = useState([]);
@@ -17,10 +18,15 @@ export default function RealisationDisplay() {
         });
         return filteredData;
       })
-      .then((data) => setRealisations(data))
+      .then((data) => {
+        setRealisations(data);
+        setLoading(false);
+      })
 
-      .catch((error) => console.log(error.response));
-    setLoading(false);
+      .catch((error) => {
+        console.log(error.response);
+        setLoading(false);
+      });
   }, []);
 
   const trios = [];
@@ -33,26 +39,25 @@ export default function RealisationDisplay() {
       <p className="text-dark h1 text-center pt-3">
         Nos dernières réalisations
       </p>
-      <Carousel
-        className="mb-5 pb-5 px-5"
-        data-bs-theme="dark"
-        interval={null}
-      >
-        {!loading && trios.map((trio, index) => (
-          <Carousel.Item className="" key={index} >
-            <div className="d-flex flex-column col-12 align-items-center px-5 flex-lg-row align-items-lg-stretch justify-content-lg-around px-lg-0">
-            { trio.map((realisation, realisationIndex) => (
-              <RealisationDisplayImages
-                key={realisationIndex}
-                text={realisation.text}
-                src={`./uploads/images/${realisation.imageFileName}`}
-                title={realisation.title}
-              />
-            )) }
-            <div className="d-none d-lg-block col-lg-1"></div>
-            </div>
-          </Carousel.Item>
-        ))|| <p>Chargement...</p>}
+      <Carousel className="mb-5 pb-5 px-5" data-bs-theme="dark" interval={null}>
+        {(!loading &&
+          trios.map((trio, index) => (
+            <Carousel.Item className="" key={index}>
+              <div className="d-flex flex-column col-12 align-items-center px-5 flex-lg-row align-items-lg-stretch justify-content-lg-around px-lg-0">
+                {trio.map((realisation, realisationIndex) => (
+                  <RealisationDisplayImages
+                    key={realisationIndex}
+                    text={realisation.text}
+                    src={`./uploads/images/${realisation.imageFileName}`}
+                    title={realisation.title}
+                  />
+                ))}
+                <div className="d-none d-lg-block col-lg-1"></div>
+              </div>
+            </Carousel.Item>
+          ))) || <p className="d-flex justify-content-center">
+            <RealisationLoader/>
+            </p>}
       </Carousel>
     </div>
   );

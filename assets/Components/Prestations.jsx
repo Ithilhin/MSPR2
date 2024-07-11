@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import PrestationsCards from "./PrestationsCards";
 import PrestationsAPI from "../Services/PrestationsAPI";
 import PrestationsModal from "./Modal/PrestationsModal";
-import ImageLoader from "./loaders/ImageLoader";
+import ImageLoaderBig from "./loaders/ImageLoaderBig";
 
 export default function Prestations() {
   const [prestations, setPrestations] = useState([]);
@@ -39,7 +39,7 @@ export default function Prestations() {
       >
         {!loading && prestations.map((prestation, index) => (
           <PrestationsCards key={index} title={prestation.title} index={index} />
-        )) || <ImageLoader/>}
+        )) || <ImageLoaderBig/>}
       </div>
       <PrestationsModal
         show={modalShow}

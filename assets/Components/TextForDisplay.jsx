@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import textsAPI from "../Services/textsAPI";
+import TextLoader from "./loaders/TextLoader";
 
 export default function TextForDisplay({ page }) {
   const [texts, setTexts] = useState([]);
@@ -15,15 +16,20 @@ export default function TextForDisplay({ page }) {
 
         return filteredData;
       })
-      .then((data) => setTexts(data))
-      .catch((error) => console.log(error.response));
-    setLoading(false);
+      .then((data) => {
+        setTexts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.response);
+        setLoading(false);
+      });
   }, []);
 
   return (
     <>
       {loading ? (
-        <p>Chargement...</p>
+        <TextLoader/>
       ) : (
         texts.map((text, index) => (
           <div key={index} className="text-container">
