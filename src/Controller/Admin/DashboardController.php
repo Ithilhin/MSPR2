@@ -59,10 +59,12 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Images des prestations', 'fas fa-list', Image::class);
         yield MenuItem::linkToCrud('Messages', 'fas fa-list', Contact::class);
         
+        
 
 
         // Add a button to go back to the front homepage
         yield MenuItem::linkToUrl("Page D'acceuil du site", 'fas fa-home', '/#');
+        
 
     }
 }

@@ -45,7 +45,11 @@ class RealisationCrudController extends AbstractCrudController
                     ->setBasePath('/uploads/images')->setUploadDir('public/uploads/images/')
                     ->setRequired($pageName === Crud::PAGE_NEW),   
                 TextField::new('title')->setLabel('Titre')->setHelp('Type de réalisation'),
-                TextEditorField::new('text')->setLabel('Description')->setHelp('Description de la réalisation effectuée'),
+                TextEditorField::new('text')->setLabel('Description de la réalisation')->setHelp('Description de la réalisation effectuée')->onlyOnForms(),
+                TextField::new('text')->setLabel('Description')->setHelp('Description de la réalisation effectuée')->onlyOnIndex()->formatValue(function ($value) {
+                    return $value;
+                }),
+    
                 BooleanField::new('active')->setLabel('active')->setHelp("Afficher la réalisation sur la page d'acceuil"),
             ];
         }

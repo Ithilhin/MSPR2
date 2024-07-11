@@ -9,6 +9,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+
 
 class TextCrudController extends AbstractCrudController
 {
@@ -45,7 +47,10 @@ class TextCrudController extends AbstractCrudController
                     'Contact' => 'Contact',
                 ]
             )->setHelp("Titre de la page où le texte doit être inséré"),
-            TextEditorField::new('text')->setLabel('Texte')->setHelp("Texte à insérer dans la page"),
+            TextEditorField::new('text')->setLabel('Texte à afficher')->setHelp("Texte à insérer dans la page")->onlyOnForms(),
+            TextField::new('text')->setLabel('Texte')->setHelp("Texte à insérer dans la page")->onlyOnIndex()->formatValue(function ($value) {
+                return $value;
+            }),
 
 
         ];

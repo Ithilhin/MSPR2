@@ -40,9 +40,12 @@ class ContactCrudController extends AbstractCrudController
             return [
                 TextField::new('lastName')->setLabel('Nom de Famille')->setHelp('Nom de famille du client'),
                 TextField::new('firstName')->setLabel('Prénom')->setHelp('Prénom du client'),
-                TextField::new('email')->setLabel('Email')->setHelp('Email du client'),
-                TextField::new('tel')->setLabel('Téléphone')->setHelp('Téléphone du client'),
-                TextEditorField::new('message')->setLabel('Message')->setHelp('Message du client'),             
+                TextField::new('email')->setLabel('Email')->setHelp('Email du client')->onlyOnForms(),
+                TextField::new('tel')->setLabel('Téléphone')->setHelp('Téléphone du client')->onlyOnForms(),
+                TextEditorField::new('message')->setLabel('Message')->setHelp('Message du client')->onlyOnForms(), 
+                TextField::new('message')->setLabel('Message du client')->setHelp("Texte à insérer dans la page")->onlyOnIndex()->formatValue(function ($value) {
+                    return $value;
+                }),            
             ];
         }
         public function configureActions(Actions $actions): Actions
