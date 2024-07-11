@@ -21,17 +21,17 @@ class Prices
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Groups(['prices_read','prestations_read'])]
+    #[Groups(['prices_read', 'prestations_read'])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?float $minPrice = null;
 
     #[ORM\Column]
-    #[Groups(['prices_read','prestations_read'])]
+    #[Groups(['prices_read', 'prestations_read'])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?float $meanPrice = null;
 
     #[ORM\Column]
-    #[Groups(['prices_read','prestations_read'])]
+    #[Groups(['prices_read', 'prestations_read'])]
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?float $maxPrice = null;
 

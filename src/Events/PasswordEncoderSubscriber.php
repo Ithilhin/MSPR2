@@ -9,41 +9,60 @@ use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-// La classe PasswordEncoderSubscriber implémente l'interface EventSubscriberInterface pour écouter les événements Symfony
-
+/**
+ * The PasswordEncoderSubscriber class listens to Symfony events and handles password encoding for User entities.
+ * It implements the EventSubscriberInterface to subscribe to specific events, particularly for encoding passwords before persisting users.
+ */
 class PasswordEncoderSubscriber implements EventSubscriberInterface
 {
-    // Propriété pour stocker le service de hachage de mot de passe
     /**
-     * Encodeur de mot de passe
-     * @var UserPasswordHasherInterface
+     * @var UserPasswordHasherInterface The password hasher service.
      */
     private $passwordEncoder;
 
-    // Constructeur pour injecter le service de hachage de mot de passe
+    /**
+     * Constructor to inject the password hasher service.
+     * 
+     * @param UserPasswordHasherInterface $passwordEncoder The service used for hashing passwords.
+     */
     public function __construct(UserPasswordHasherInterface $passwordEncoder)
     {
         $this->passwordEncoder = $passwordEncoder;
     }
-    // Méthode pour s'abonner aux événements, ici à l'événement VIEW pour exécuter une action avant l'écriture dans la base de données
+
+    /**
+     * Specifies the events to which this subscriber wants to listen.
+     * This method subscribes to the VIEW event with a priority to ensure it runs before the entity is written to the database.
+     * 
+     * @return array The array of events this subscriber listens to.
+     */
     public static function getSubscribedEvents()
     {
         return [
             KernelEvents::VIEW => ['encodePassword', EventPriorities::PRE_WRITE]
         ];
     }
-    // Méthode appelée lors de l'événement VIEW pour hacher le mot de passe de l'utilisateur avant de le sauvegarder
+
+    /**
+     * Encodes the password of a User entity before it's persisted to the database.
+     * This method is triggered on the VIEW event, allowing us to intercept User entities and hash their passwords before saving.
+     * 
+     * @param ViewEvent $event The event instance containing the request and the entity.
+     */
     public function encodePassword(ViewEvent $event)
     {
-        // Récupère l'entité (User) à partir du contrôleur
+        // Retrieve the entity from the current ViewEvent.
         $user = $event->getControllerResult();
-        // Vérifie la méthode de la requête (doit être POST pour hacher le mot de passe)
+
+        // Check if the request method is POST to ensure we only encode passwords on user creation.
         $method = $event->getRequest()->getMethod();
-        // Si l'entité est un User et que la méthode est POST, hache le mot de passe et le définit pour l'utilisateur
+
+        // If the entity is a User and the method is POST, proceed with password hashing.
         if ($user instanceof User && 'POST' === $method) {
-            // Hache le mot de passe de l'utilisateur
+            // Hash the user's plain password.
             $hash = $this->passwordEncoder->hashPassword($user, $user->getPassword());
-            // Définit le mot de passe haché pour l'utilisateur
+
+            // Set the hashed password back on the User entity.
             $user->setPassword($hash);
         }
     }

@@ -40,9 +40,9 @@ class Realisation
     #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?string $imageFileName = null;
 
-    
 
-    
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,6 +95,4 @@ class Realisation
 
         return $this;
     }
-
-    
 }

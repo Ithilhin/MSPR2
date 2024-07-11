@@ -43,7 +43,8 @@ class Image
     #[Groups(['image_read'])]
     private ?bool $active = null;
 
-    public function __toString() {
+    public function __toString()
+    {
         // Return the filename or any other string that represents this object
         return $this->src;
     }

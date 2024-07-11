@@ -17,13 +17,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 
 #[ApiResource(
-    normalizationContext: ['groups' => ['users_read']], 
+    normalizationContext: ['groups' => ['users_read']],
 )]
 
 #[UniqueEntity(fields: ['email'], message: 'Cet email est déjà utilisé')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -38,28 +38,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    #[Assert\NotBlank(message:'Le rôle est obligatoire')]
+    #[Assert\NotBlank(message: 'Le rôle est obligatoire')]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank(message:'Veuillez saisir un mot de passe')]
+    #[Assert\NotBlank(message: 'Veuillez saisir un mot de passe')]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:'Veuillez saisir un prénom')]
-    #[Assert\Length(min: 2,max:255,minMessage: 'Le prénom doit contenir au moins 2 caractères', maxMessage: 'Le prénom doit contenir au maximum 255 caractères')]
+    #[Assert\NotBlank(message: 'Veuillez saisir un prénom')]
+    #[Assert\Length(min: 2, max: 255, minMessage: 'Le prénom doit contenir au moins 2 caractères', maxMessage: 'Le prénom doit contenir au maximum 255 caractères')]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:'Veuillez saisir un nom')]
-    #[Assert\Length(min: 2,max:255,minMessage: 'Le nom doit contenir au moins 2 caractères', maxMessage: 'Le nom doit contenir au maximum 255 caractères')]
+    #[Assert\NotBlank(message: 'Veuillez saisir un nom')]
+    #[Assert\Length(min: 2, max: 255, minMessage: 'Le nom doit contenir au moins 2 caractères', maxMessage: 'Le nom doit contenir au maximum 255 caractères')]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:'Veuillez saisir un numéro de téléphone')]
+    #[Assert\NotBlank(message: 'Veuillez saisir un numéro de téléphone')]
     private ?string $tel = null;
 
     #[ORM\Column(length: 255, nullable: true)]
