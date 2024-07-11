@@ -33,7 +33,6 @@ class Realisation
 
     #[ORM\Column]
     #[Groups(["realisations_read"])]
-    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?bool $active = null;
 
     #[ORM\Column(length: 255)]

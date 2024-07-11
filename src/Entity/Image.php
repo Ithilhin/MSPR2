@@ -41,7 +41,6 @@ class Image
 
     #[ORM\Column]
     #[Groups(['image_read'])]
-    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?bool $active = null;
 
     public function __toString() {

@@ -27,7 +27,6 @@ class ImageForCarousel
 
     #[ORM\Column]
     #[Groups(["image_for_carousel_read"])]
-    #[Assert\NotBlank(message: 'Ce champs ne peux pas etre vide')]
     private ?bool $active = null;
 
     #[Groups(["image_for_carousel_read"])]
