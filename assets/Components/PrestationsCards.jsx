@@ -31,7 +31,7 @@ function PrestationsCards({ title, index }) {
   return (
     console.log("src de l'image", imagesPrestationActives[0]),
     (
-      <div key={index} className="col-lg col-8 position-relative m-auto h-400">
+      <div key={index} className="col-lg col-8 position-relative my-3 mx-auto h-400">
         <p className="fw-bold vertical-text mt-4 ">{title}</p>
         <div
           className="darkBackground animatedBackground h-100 bg-dark"
