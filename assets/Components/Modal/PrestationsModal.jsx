@@ -10,8 +10,10 @@ export default function PrestationsModal(props) {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      contentClassName='rounded'
+      
     >
-      <Modal.Header className="bg-primary">
+      <Modal.Header className="bg-primary rounded-top">
         <Modal.Title id="contained-modal-title-vcenter" className="text-white">
           {props.prestation}
         </Modal.Title>
@@ -19,7 +21,7 @@ export default function PrestationsModal(props) {
       <Modal.Body>
         <PrestationModalCarousel prestation={props.prestation} />
       </Modal.Body>
-      <Modal.Footer className="bg-primary">
+      <Modal.Footer className="bg-primary rounded-bottom">
         <Button className="btn-danger" onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
