@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "../Components/Title";
 import TextForDisplay from "../Components/TextForDisplay";
-import ClientsDisplay from "../Components/clientsDisplay";
+import ClientsDisplay from "../Components/ClientsDisplay";
 import RealisationDisplay from "../Components/RealisationDisplay";
 import CarouselDisplay from "../Components/CarouselDisplay";
 

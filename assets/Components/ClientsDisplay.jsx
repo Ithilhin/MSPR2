@@ -25,11 +25,11 @@ export default function ClientsDisplay() {
         <p className="text-white h1 text-center pt-3">Découvrez nos clients</p>
         <div className="container mt-4">
           <div className="row d-flex justify-content-center">
-            <div className="d-flex flex-column col-12 justify-content-around flex-lg-row align-items-center">
+            <div className="d-flex flex-column col-12 justify-content-lg-around flex-lg-row align-items-lg-stretch">
               {!loading &&
                 clients.map((client, index) => (
                   <React.Fragment key={index}>
-                    <div className="row col-8 col-lg d-flex flex-column h-100">
+                    <div className="row col-8 col-lg d-flex flex-column">
                       <div className="col-12 p-0 d-flex">
                         <div className="col-2 h-35"></div>
                         <h3
@@ -45,11 +45,13 @@ export default function ClientsDisplay() {
                         </h3>
                       </div>
                       <p
-                        className="col-12 bg-light rounded-bottom py-3 flex-grow-1}"
+                        className="col-12 bg-light rounded-bottom py-3 flex-grow-1"
                         dangerouslySetInnerHTML={{ __html: client.description }}
                       ></p>
                     </div>
-                    {index !== clients.length -1 && <div className="d-none d-lg-block col-lg-1"></div>}
+                    {index !== clients.length - 1 && (
+                      <div className="d-none d-lg-block col-lg-1"></div>
+                    )}
                   </React.Fragment>
                 ))}
             </div>
