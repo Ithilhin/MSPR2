@@ -24,9 +24,9 @@ export default function Navbar({ isAuthenticated, onLogout }) {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarColor01">
+          <div className="collapse navbar-collapse align-items-center" id="navbarColor01">
             <ul className="navbar-nav m-auto align-items-center">
-              <li className="nav-item">
+              <li className="nav-item mx-0 mx-lg-3">
                 {/* TODO: inserer logo Canopées */}
                 <NavLink className="nav-link" to="/">
                   <img
@@ -36,38 +36,37 @@ export default function Navbar({ isAuthenticated, onLogout }) {
                   />
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-0 mx-lg-3">
                 <NavLink className="nav-link" to="aboutUs">
                   Qui sommes-nous?
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-0 mx-lg-3">
                 <NavLink className="nav-link" to="prestations">
                   Prestations
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-0 mx-lg-3">
                 <NavLink className="nav-link" to="prices">
                   Tarifs
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="nav-item mx-0 mx-lg-3">
                 <NavLink className="nav-link" to="ContactForm">
                   Contact
                 </NavLink>
               </li>
               {isAuthenticated && (
-                <li className="nav-item">
+                <li className="nav-item mx-0 mx-lg-3">
                   <NavLink className="nav-link" to="admin">
                     Administration
                   </NavLink>
                 </li>
               )}
             </ul>
-            {/* TODO: aligner les bouttons */}
-            <ul className="navbar-nav ml-auto">
+            <ul className="navbar-nav m-auto">
               {!isAuthenticated && (
-                <li className="nav-item">
+                <li className="nav-item m-auto m-lg-0">
                   <NavLink to="/login" className="btn btn-success">
                     Connexion
                   </NavLink>
