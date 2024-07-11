@@ -15,48 +15,62 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 
 class PrestationCrudController extends AbstractCrudController
 {
+    // Returns the class name of the entity this controller manages
     public static function getEntityFqcn(): string
     {
         return Prestation::class;
     }
 
+    // Configures general settings for the CRUD interface of Prestations
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            // set this option if you prefer the page content to span the entire
-            // browser width, instead of the default design which sets a max width
+            // Maximizes the content width for a more spacious layout
             ->renderContentMaximized()
 
-            // set this option if you prefer the sidebar (which contains the main menu)
-            // to be displayed as a narrow column instead of the default expanded design
+            // Uncomment below to display the sidebar as a narrow column, providing more space for content
             // ->renderSidebarMinimized()
-            // the labels used to refer to this entity in titles, buttons, etc.
+
+            // Sets custom labels for this entity in the admin interface
             ->setEntityLabelInSingular('Prestation')
             ->setEntityLabelInPlural('Prestations');
     }
 
+    // Defines which fields are displayed in the CRUD interface and their configurations
     public function configureFields(string $pageName): iterable
     {
         return [
+            // Field for the title of the prestation, with a custom label and help text
             TextField::new('Title')->setLabel('Type de prestation')->setHelp('Titre de la prestation'),
+
+            // Custom formatted number field for displaying the minimum price
             NumberField::new('prices.minPrice')->setLabel('Prix minimum')
                 ->formatValue(function ($value, $entity) {
+                    // Formats the minimum price value as a currency
                     return number_format($entity->getPrices()->getMinPrice(), 2, ',', '') . ' €/h';
                 }),
+
+            // Custom formatted number field for displaying the mean price
             NumberField::new('prices.meanPrice')->setLabel('Prix moyen')
                 ->formatValue(function ($value, $entity) {
+                    // Formats the mean price value as a currency
                     return number_format($entity->getPrices()->getMeanPrice(), 2, ',', '') . ' €/h';
                 }),
+
+            // Custom formatted number field for displaying the maximum price
             NumberField::new('prices.maxPrice')->setLabel('Prix maximum')
                 ->formatValue(function ($value, $entity) {
+                    // Formats the maximum price value as a currency
                     return number_format($entity->getPrices()->getMaxPrice(), 2, ',', '') . ' €/h';
                 }),
         ];
     }
+
+    // Configures actions available for Prestations in the admin interface
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            // Disable the 'new' action to remove the ability to create new Prestations
+            // Disables the ability to create new Prestation entries
             ->disable(Action::NEW);
     }
 }

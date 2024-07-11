@@ -38,16 +38,16 @@ export default function Prices() {
           {!loading && (
             <tbody>
               {prices.map((price, index) => ( // Map through prices data to display each row
-                <tr className="" key={index}> // Display the title of the prestation
+                <tr className="" key={index}> 
                   <td>{price.prestation.title}</td>
                   <td className="text-center">
-                    {price.minPrice.toFixed(2).toLocaleString()} € // Display the minimum price formatted as currency
+                    {price.minPrice.toFixed(2).toLocaleString()} €
                   </td>
                   <td className="text-center">
-                    {price.meanPrice.toFixed(2).toLocaleString()} € // Display the average price formatted as currency
+                    {price.meanPrice.toFixed(2).toLocaleString()} €
                   </td>
                   <td className="text-center">
-                    {price.maxPrice.toFixed(2).toLocaleString()} € // Display the maximum price formatted as currency
+                    {price.maxPrice.toFixed(2).toLocaleString()} €
                   </td>
                 </tr>
               ))}
@@ -60,7 +60,7 @@ export default function Prices() {
           </div>
         )}
       </div>
-      <TextForDisplay page={"Tarifs"} /> // Display additional text content for the page
+      <TextForDisplay page={"Tarifs"} />
     </div>
   );
 }

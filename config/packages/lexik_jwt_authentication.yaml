@@ -1,5 +1,5 @@
+# Configuration for LexikJWTAuthenticationBundle
 lexik_jwt_authentication:
-    secret_key: '%env(resolve:JWT_SECRET_KEY)%'
-    public_key: '%env(resolve:JWT_PUBLIC_KEY)%'
-    pass_phrase: '%env(JWT_PASSPHRASE)%'
-    
+    secret_key: '%env(resolve:JWT_SECRET_KEY)%' # The secret key used to sign the JWT tokens. Resolved from environment variables.
+    public_key: '%env(resolve:JWT_PUBLIC_KEY)%' # The public key used for token verification. Resolved from environment variables.
+    pass_phrase: '%env(JWT_PASSPHRASE)%' # The passphrase for the private key. Directly from environment variables.    

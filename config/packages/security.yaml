@@ -1,35 +1,38 @@
 security:
+  # Configuration for hashing user passwords according to best practices
   # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
   password_hashers:
     Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: "auto"
+  # Defines how users are loaded for authentication and session management
   # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
   providers:
-    # used to reload user from session & other features (e.g. switch_user)
     app_user_provider:
       entity:
-        class: App\Entity\User
-        property: email
+        class: App\Entity\User # Specifies the User entity class
+        property: email # Uses email as the property for user identification
+  # Configuration of security firewalls for different parts of the application
   firewalls:
     dev:
-      pattern: ^/(_(profiler|wdt)|css|images|js)/
-      security: false
+      pattern: ^/(_(profiler|wdt)|css|images|js)/ # Excludes certain paths from security for development tools and assets
+      security: false # Disables security for the matched paths
     login:
-      pattern: ^/api/login
-      stateless: true
+      pattern: ^/api/login # Applies to the login route
+      stateless: true # Makes the login route stateless, suitable for APIs
       json_login:
-        check_path: /api/login_check
-        success_handler: lexik_jwt_authentication.handler.authentication_success
-        failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        check_path: /api/login_check # Path for checking login credentials
+        success_handler: lexik_jwt_authentication.handler.authentication_success # Handler called on successful login
+        failure_handler: lexik_jwt_authentication.handler.authentication_failure # Handler called on failed login
     api:
-      pattern: ^/api
-      stateless: true
-      jwt: ~
+      pattern: ^/api # Applies to all API routes
+      stateless: true # Ensures the API does not use session state
+      jwt: ~ # Enables JWT authentication for the API
     main:
-      pattern: ^/
-      provider: app_user_provider
+      pattern: ^/ # Applies to all other routes
+      provider: app_user_provider # Specifies the user provider for authentication
       logout:
-        # Optionally, specify where to redirect after logout
-        target: /#/logout
+        target: /#/logout # Specifies the logout redirection target
+
+      # The following configurations are examples of various authentication methods that can be enabled as needed
 
       # stateless: true
 
@@ -55,19 +58,19 @@ security:
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
-    - { path: ^/api/login, roles: PUBLIC_ACCESS }
-    - { path: ^/api/clients, roles: PUBLIC_ACCESS }
-    - { path: ^/api/contacts, roles: PUBLIC_ACCESS }
-    - { path: ^/api/images, roles: PUBLIC_ACCESS }
-    - { path: ^/api/login_check, roles: PUBLIC_ACCESS }
-    - { path: ^/api/prestations, roles: PUBLIC_ACCESS }
-    - { path: ^/api/pricess, roles: PUBLIC_ACCESS }
-    - { path: ^/api/realisations, roles: PUBLIC_ACCESS }
-    - { path: ^/api/texts, roles: PUBLIC_ACCESS }
-    - { path: ^/api/users, roles: PUBLIC_ACCESS }
-    - { path: ^/api, roles: PUBLIC_ACCESS }
-    - { path: ^/admin, roles: ROLE_ADMIN }
-    # - { path: ^/profile, roles: ROLE_USER }
+    - { path: ^/api/login, roles: PUBLIC_ACCESS } # Public access to the login API
+    - { path: ^/api/clients, roles: PUBLIC_ACCESS } # Public access to the clients API
+    - { path: ^/api/contacts, roles: PUBLIC_ACCESS } # Public access to the contacts API
+    - { path: ^/api/images, roles: PUBLIC_ACCESS } # Public access to the images API
+    - { path: ^/api/login_check, roles: PUBLIC_ACCESS } # Public access to the login check API
+    - { path: ^/api/prestations, roles: PUBLIC_ACCESS } # Public access to the prestations API
+    - { path: ^/api/pricess, roles: PUBLIC_ACCESS } # Public access to the prices API, note potential typo in "pricess"
+    - { path: ^/api/realisations, roles: PUBLIC_ACCESS } # Public access to the realisations API
+    - { path: ^/api/texts, roles: PUBLIC_ACCESS } # Public access to the texts API
+    - { path: ^/api/users, roles: PUBLIC_ACCESS } # Public access to the users API
+    - { path: ^/api, roles: PUBLIC_ACCESS } # Default public access to all API routes
+    - { path: ^/admin, roles: ROLE_ADMIN } # Restricts access to /admin to users with ROLE_ADMIN
+    # - { path: ^/profile, roles: ROLE_USER } # Example of restricting access to /profile to users with ROLE_USER
 
 when@test:
   security:
@@ -77,7 +80,7 @@ when@test:
       # are not important, waste resources and increase test times. The following
       # reduces the work factor to the lowest possible values.
       Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
-        algorithm: auto
-        cost: 4 # Lowest possible value for bcrypt
-        time_cost: 3 # Lowest possible value for argon
-        memory_cost: 10 # Lowest possible value for argon
+        algorithm: auto # Automatically selects the best available algorithm
+        cost: 4 # Lowest possible value for bcrypt to speed up tests
+        time_cost: 3 # Lowest possible value for argon to speed up tests
+        memory_cost: 10 # Lowest possible value for argon to speed up testsn

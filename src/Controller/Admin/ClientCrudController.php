@@ -9,42 +9,47 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-
+// Defines a CRUD controller for the Client entity using EasyAdminBundle
 class ClientCrudController extends AbstractCrudController
 {
+    // Specifies the fully qualified class name (FQCN) of the entity this CRUD controller manages
     public static function getEntityFqcn(): string
     {
         return Client::class;
     }
 
+    // Configures options for the CRUD interface
     public function configureCrud(Crud $crud): Crud
-{
-    return $crud
-        // set this option if you prefer the page content to span the entire
-        // browser width, instead of the default design which sets a max width
-        ->renderContentMaximized()
+    {
+        return $crud
+            // Maximizes the content width for better readability and usability
+            ->renderContentMaximized()
 
-        // set this option if you prefer the sidebar (which contains the main menu)
-        // to be displayed as a narrow column instead of the default expanded design
-        // ->renderSidebarMinimized()
-        // the labels used to refer to this entity in titles, buttons, etc.
-        ->setEntityLabelInSingular('Client')
-        ->setEntityLabelInPlural('Clients')
-    ;
-}
+            // Uncomment the following line to minimize the sidebar for a wider content area
+            // ->renderSidebarMinimized()
 
-    
+            // Sets custom labels for the entity in the admin interface
+            ->setEntityLabelInSingular('Client')
+            ->setEntityLabelInPlural('Clients');
+    }
+
+    // Defines the fields to be displayed in the CRUD forms and listings
     public function configureFields(string $pageName): iterable
     {
         return [
+            // Defines a text field for the client type with a custom label and help text
             TextField::new('Type')->setLabel('Type de client')->setHelp('Example: particulier, professionnel, collectivité'),
+
+            // Defines a text editor field for the client description, shown only in forms
             TextEditorField::new('description')->setLabel('Description')->setHelp('Texte de description du client')->onlyOnForms(),
+
+            // Defines a text field for the client description, formatted for display in listings
             TextField::new('description')->setLabel('Description')->setHelp('Texte de description du client')->onlyOnIndex()->formatValue(function ($value) {
-                return $value;
+                return $value; // Custom formatting can be applied here
             }),
 
+            // Defines a boolean field to indicate if the client is active, with a custom label and help text
             BooleanField::new('active')->setLabel('actif')->setHelp('Client actif ou non actif'),
         ];
     }
-    
 }

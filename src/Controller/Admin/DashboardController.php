@@ -22,7 +22,7 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        
+
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -43,28 +43,34 @@ class DashboardController extends AbstractDashboardController
 
     public function configureDashboard(): Dashboard
     {
+        // Sets the title of the dashboard in the admin panel
         return Dashboard::new()
-            ->setTitle('MSPR2');
+            ->setTitle('Canopées');
     }
 
     public function configureMenuItems(): iterable
     {
-        // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        // Configures menu items for the admin dashboard
+        // Each line represents a link in the dashboard menu to manage different entities
+
+        // Link to manage Users
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
+        // Link to manage Carousel Images
         yield MenuItem::linkToCrud('Images pour carroussel', 'fas fa-list', ImageForCarousel::class);
+        // Link to manage Editable Texts
         yield MenuItem::linkToCrud('Textes modifiables', 'fas fa-list', Text::class);
+        // Link to manage Client Types
         yield MenuItem::linkToCrud('Clients types', 'fas fa-list', Client::class);
+        // Link to manage Realizations
         yield MenuItem::linkToCrud('Réalisations', 'fas fa-list', Realisation::class);
+        // Link to manage Services
         yield MenuItem::linkToCrud('Prestations', 'fas fa-list', Prestation::class);
+        // Link to manage Service Images
         yield MenuItem::linkToCrud('Images des prestations', 'fas fa-list', Image::class);
+        // Link to manage Messages
         yield MenuItem::linkToCrud('Messages', 'fas fa-list', Contact::class);
-        
-        
 
-
-        // Add a button to go back to the front homepage
+        // Adds a link to return to the front homepage from the admin dashboard
         yield MenuItem::linkToUrl("Page D'acceuil du site", 'fas fa-home', '/#');
-        
-
     }
 }

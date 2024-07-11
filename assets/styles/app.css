@@ -1,68 +1,74 @@
-/* General background color classes using custom properties for theme consistency */
+:root {
+  --customBlue: #2a4b9b;
+  --customViolet: #692b85;
+  --customGreen: #098136;
+  --customYellow: #f1a80f;
+  --customRed: #da4d66;
+  --highlight-custom-green: #85fab1;
+}
+
+.bg-custom-violet {
+  background-color: var(--customViolet);
+}
 .bg-custom-blue {
-  background-color: var(--customBlue); /* Light blue background */
+  background-color: var(--customBlue);
 }
 
 .bg-custom-green {
-  background-color: var(--customGreen); /* Light green background */
+  background-color: var(--customGreen);
 }
 
 .bg-custom-yellow {
-  background-color: var(--customYellow); /* Yellow background */
+  background-color: var(--customYellow);
 }
 
 .bg-custom-red {
-  background-color: var(--customRed); /* Red background */
+  background-color: var(--customRed);
 }
 
-/* Text color classes using custom properties for theme consistency */
 .text-custom-green {
-  color: var(--customGreen); /* Green text color */
+  color: var(--customGreen);
 }
 
 .text-custom-yellow {
-  color: var(--customYellow); /* Yellow text color */
+  color: var(--customYellow);
 }
 
 .text-custom-red {
-  color: var(--customRed); /* Red text color */
+  color: var(--customRed);
 }
 
 .text-custom-blue {
-  color: var(--customBlue); /* Blue text color */
+  color: var(--customBlue);
 }
 
 .text-custom-violet {
-  color: var(--customViolet); /* Violet text color */
+  color: var(--customViolet);
 }
 
-/* Logo styling to ensure it doesn't exceed given dimensions */
 .logo {
-  max-width: 75px; /* Maximum logo width */
-  max-height: 75px; /* Maximum logo height */
+  max-width: 75px;
+  max-height: 75px;
 }
 
-/* Styling for vertical text, often used in sidebars or vertical banners */
 .vertical-text {
-  position: absolute; /* Positioning context */
-  writing-mode: vertical-lr; /* Text flows vertically from left to right */
-  color: var(--highlight-custom-green); /* Highlight color for emphasis */
-  z-index: 10; /* Ensures visibility over other elements */
-  left: 25%; /* Horizontal positioning */
-  transform: translateX(-50%); /* Centering adjustment */
-  pointer-events: none; /* Disables interaction to ensure it doesn't interfere with underlying elements */
+  position: absolute;
+  writing-mode: vertical-lr;
+  color: var(--highlight-custom-green);
+  z-index: 10;
+  left: 25%;
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
-/* Height utility classes for consistent spacing and layout */
 .h-400 {
-  height: 400px; /* Fixed height of 400px */
+  height: 400px;
 }
 .h-600 {
-  height: 600px; /* Fixed height of 600px */
+  height: 600px;
 }
 
-/* Styling for elements with a dark background, often used for contrast */
 .darkBackground {
-  width: 50%; /* Occupies half of its parent's width */
-  position: absolute; /* Positioned relative to its nearest positioned ancestor */
+  width: 50%;
+  position: absolute;
 }
