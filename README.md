@@ -36,9 +36,10 @@ To get the project up and running on your local machine, follow these steps:
 - Copy the `.env.example` file to `.env` and adjust the database and other configurations as needed.
 5. **Start the project:**
 - Use Doctrine to populate your DB with fixtures
+- Start local server
   ```
-- npm run dev-server
-- symfony serve
+  npm run dev-server
+  symfony serve
   ```
 
 ## Default Admin Users
