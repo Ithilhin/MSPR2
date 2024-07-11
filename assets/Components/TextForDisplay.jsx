@@ -10,7 +10,6 @@ export default function TextForDisplay({ page }) {
       .getTexts()
       .then((data) => {
         const filteredData = data.filter((text) => {
-          console.log("from useEffect in TextForDisplay", text.page, page);
           return text.Page === page;
         });
 
@@ -19,12 +18,10 @@ export default function TextForDisplay({ page }) {
       .then((data) => setTexts(data))
       .catch((error) => console.log(error.response));
     setLoading(false);
-    console.log("from useEffect in TextForDisplay", texts);
   }, []);
 
   return (
     <>
-      {console.log("from return in TextForDisplay", texts)}
       {loading ? (
         <p>Chargement...</p>
       ) : (

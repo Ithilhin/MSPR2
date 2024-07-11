@@ -119,8 +119,8 @@ export default function ContactFormPage() {
           </label>
         </div>
       </div>
-      <div className="d-flex justify-content-end">
-        <button className="btn btn-success col-6 mt-3">Envoyer</button>
+      <div className="d-flex justify-content-center justify-content-md-end">
+        <button className="btn btn-success col-6 mt-3 mb-5 flex-grow-1 flex-md-grow-0">Envoyer</button>
       </div>
       <TextForDisplay page={"Contact"} />
     </form>
