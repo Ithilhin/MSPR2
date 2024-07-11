@@ -35,10 +35,10 @@ To get the project up and running on your local machine, follow these steps:
 4. **Set up the environment:**
 - Copy the `.env.example` file to `.env` and adjust the database and other configurations as needed.
 5. **Start the project:**
-- Use Docker Compose to build and start the project:
+- Use Doctrine to populate your DB with fixtures
   ```
-  npm run dev-server
-  symfony serve
+- npm run dev-server
+- symfony serve
   ```
 
 ## Default Admin Users
