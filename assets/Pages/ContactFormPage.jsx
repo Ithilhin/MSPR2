@@ -6,7 +6,9 @@ import { toast } from "react-toastify";
 import Title from "../Components/Title";
 import TextForDisplay from "../Components/TextForDisplay";
 
+// ContactFormPage component for the contact form page
 export default function ContactFormPage() {
+  // State for contact form data
   const [contact, setContact] = useState({
     lastName: "",
     firstName: "",
@@ -15,6 +17,7 @@ export default function ContactFormPage() {
     message: "",
   });
 
+  // State for form errors
   const [errors, setErrors] = useState({
     lastName: "",
     firstName: "",
@@ -25,29 +28,30 @@ export default function ContactFormPage() {
 
   const navigate = useNavigate();
 
+  // Handle change in form fields
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
-    setContact({ ...contact, [name]: value });
-    console.log(contact);
+    setContact({ ...contact, [name]: value }); // Update contact state with field values
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission behavior
     try {
       await contactsAPI.postContactMessage(contact);
-      toast.success("Votre message a bien été envoyé");
-      navigate("/", { replace: true });
-      setErrors({});
+      toast.success("Votre message a bien été envoyé"); // Show success notification
+      navigate("/", { replace: true }); // Navigate to homepage after successful submission
+      setErrors({}); // Reset errors state
     } catch (error) {
-      console.error("An unexpected error occurred:", error);
+      console.error("An unexpected error occurred:", error); // Log error for debugging
       const { violations } = error.response.data;
       if (violations) {
         const apiErrors = {};
         violations.forEach(({ propertyPath, message }) => {
-          apiErrors[propertyPath] = message;
+          apiErrors[propertyPath] = message; // Map API errors to fields
         });
-        setErrors(apiErrors);
-        toast.error("Des erreurs dans votre formulaire");
+        setErrors(apiErrors); // Update errors state with API errors
+        toast.error("Des erreurs dans votre formulaire"); // Show error notification
       }
     }
   };
@@ -55,7 +59,7 @@ export default function ContactFormPage() {
   return (
     <form
       className="container d-flex justify-content-center align-items-center row m-auto"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit} // Form submission handler
     >
       <Title text={"Laissez Nous Un Message"} />
       <Fields
@@ -63,9 +67,9 @@ export default function ContactFormPage() {
         name="lastName"
         label="Nom de famille*"
         placeholder="Votre nom de famille"
-        value={contact.lastName}
-        onChange={handleChange}
-        error={errors.lastName}
+        value={contact.lastName} // Controlled component value from state
+        onChange={handleChange} // Handler for changes in input
+        error={errors.lastName} // Error message for validation feedback
       />
       <Fields
         divClassName="col-12 col-md-6"
@@ -81,7 +85,7 @@ export default function ContactFormPage() {
         name="email"
         label="Email*"
         placeholder="Votre email"
-        type="email"
+        type="email" // Specifies email input type for validation
         value={contact.email}
         onChange={handleChange}
         error={errors.email}
@@ -100,7 +104,7 @@ export default function ContactFormPage() {
         name="message"
         label="Message*"
         placeholder="Votre message"
-        type="textarea"
+        type="textarea" // Specifies textarea for multi-line text input
         value={contact.message}
         onChange={handleChange}
         error={errors.message}
@@ -112,7 +116,7 @@ export default function ContactFormPage() {
             type="checkbox"
             value=""
             id="agreecgu"
-            required
+            required // Makes accepting conditions a required action
           />
           <label className="form-check-label" htmlFor="agreecgu">
             * En cochant cette case, j'accepte les conditions particulières
@@ -121,7 +125,9 @@ export default function ContactFormPage() {
         </div>
       </div>
       <div className="d-flex justify-content-center justify-content-md-end">
-        <button className="btn btn-success col-6 mt-3 mb-5 flex-grow-1 flex-md-grow-0">Envoyer</button>
+        <button className="btn btn-success col-6 mt-3 mb-5 flex-grow-1 flex-md-grow-0">
+          Envoyer
+        </button>
       </div>
       <TextForDisplay page={"Contact"} />
     </form>

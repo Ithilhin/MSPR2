@@ -1,6 +1,8 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
+// RealisationLoader is a skeleton screen component for the "Realisations" section of a webpage.
+// It's designed to enhance user experience by providing a visual placeholder while the content is loading.
 const RealisationLoader = props => (
   <ContentLoader
     width={700}

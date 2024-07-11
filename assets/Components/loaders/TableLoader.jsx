@@ -1,6 +1,9 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
+// TableLoader is a skeleton loader component designed to enhance user experience by providing a visual placeholder
+// for table data while it's loading. This component uses the react-content-loader library to create a customizable
+// SVG-based loading animation that mimics the layout of a typical table with rows and action buttons.
 const TableLoader = props => (
   <ContentLoader
     width={800}

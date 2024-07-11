@@ -10,6 +10,7 @@ export default function CarouselDisplay() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 992);
 
   useEffect(() => {
+    // Fetches images on component mount and filters active images.
     imagesForCarouselAPI
       .getImagesForCarousel()
       .then((data) => {
@@ -22,11 +23,12 @@ export default function CarouselDisplay() {
       .then((data) => setImagesForCarousel(data))
       .catch((error) => console.log(error.response))
       .finally(() => {
-        setLoading(false);
+        setLoading(false); // Sets loading to false once images are fetched.
       });
   }, []);
 
   useEffect(() => {
+    // Effect for handling screen resize to adjust for responsive design.
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 992);
     };
@@ -45,39 +47,41 @@ export default function CarouselDisplay() {
         pairs.push(imagesForCarousel.slice(i, i + 2));
       }
 
+      // Map each pair to a Carousel.Item
       return pairs.map((pair, index) => (
         <Carousel.Item key={index} interval={3000}>
           <div className="h-400 d-flex justify-content-around align-items-center px-5">
-            {!loading && pair.map((image, imageIndex) => (
-              <CarouselDisplayImages
-                key={imageIndex}
-                src={`./uploads/images/${image.src}`}
-                alt={image.alt}
-              />
-            )) || <ImageLoaderBig />}
+            {(!loading &&
+              pair.map((image, imageIndex) => (
+                <CarouselDisplayImages
+                  key={imageIndex}
+                  src={`./uploads/images/${image.src}`}
+                  alt={image.alt}
+                />
+              ))) || <ImageLoaderBig />}
           </div>
-        </Carousel.Item>)
-      );
+        </Carousel.Item>
+      ));
     } else {
       // Logic for small screens (display single images)
       return imagesForCarousel.map((image, imageIndex) => (
         <Carousel.Item key={imageIndex} interval={3000}>
           <div className="h-400 d-flex justify-content-around align-items-center">
-          <CarouselDisplayImages
-            src={`./uploads/images/${image.src}`}
-            alt={image.alt}
-            loading={loading}
-          />
+            <CarouselDisplayImages
+              src={`./uploads/images/${image.src}`}
+              alt={image.alt}
+              loading={loading}
+            />
           </div>
         </Carousel.Item>
       ));
     }
   };
 
+  // Render the Carousel component with items
   return (
     <Carousel className="bg-custom-blue h-400" data-bs-theme="dark">
       {renderCarouselItems()}
     </Carousel>
   );
-
 }

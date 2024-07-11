@@ -1,6 +1,7 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
+// TextLoader creates a skeleton screen for text content, enhancing UX during load times.
 const TextLoader = props => {
   return (
     <ContentLoader

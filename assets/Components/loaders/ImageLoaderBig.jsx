@@ -1,6 +1,8 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
+// This component is used to display a placeholder skeleton screen for images.
+// It's particularly useful for improving the perceived performance of the app.
 const ImageLoaderBig = props => {
   return (
     <ContentLoader

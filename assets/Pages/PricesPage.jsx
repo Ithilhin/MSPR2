@@ -4,6 +4,7 @@ import TableLoader from "../Components/loaders/TableLoader";
 import Title from "../Components/Title";
 import TextForDisplay from "../Components/TextForDisplay";
 
+// Prices functional component for displaying the prices page
 export default function Prices() {
   const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,13 +14,13 @@ export default function Prices() {
       .getPrices()
       .then((data) => {
         setPrices(data);
-        setLoading(false);
+        setLoading(false); // Set loading to false after data is fetched
       })
       .catch((error) => {
         console.log(error.response);
-        setLoading(false);
+        setLoading(false); // Ensure loading is set to false in case of error
       });
-  }, []);
+  }, []); // Empty dependency array means this effect runs once on mount
 
   return (
     <div className="container d-flex justify-content-center align-items-center row m-auto">
@@ -36,27 +37,30 @@ export default function Prices() {
           </thead>
           {!loading && (
             <tbody>
-              {prices.map((price, index) => (
-                <tr className="" key={index}>
+              {prices.map((price, index) => ( // Map through prices data to display each row
+                <tr className="" key={index}> // Display the title of the prestation
                   <td>{price.prestation.title}</td>
                   <td className="text-center">
-                    {price.minPrice.toFixed(2).toLocaleString()} €
+                    {price.minPrice.toFixed(2).toLocaleString()} € // Display the minimum price formatted as currency
                   </td>
                   <td className="text-center">
-                    {price.meanPrice.toFixed(2).toLocaleString()} €
+                    {price.meanPrice.toFixed(2).toLocaleString()} € // Display the average price formatted as currency
                   </td>
                   <td className="text-center">
-                    {price.maxPrice.toFixed(2).toLocaleString()} €
+                    {price.maxPrice.toFixed(2).toLocaleString()} € // Display the maximum price formatted as currency
                   </td>
                 </tr>
               ))}
             </tbody>
           )}
-          
         </table>
-        {loading && <div className="d-flex justify-content-center"><TableLoader/></div>}
+        {loading && ( // Show loader while data is loading
+          <div className="d-flex justify-content-center">
+            <TableLoader />
+          </div>
+        )}
       </div>
-      <TextForDisplay page={"Tarifs"} />
+      <TextForDisplay page={"Tarifs"} /> // Display additional text content for the page
     </div>
   );
 }

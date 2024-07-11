@@ -5,54 +5,59 @@ import Fields from "../Components/forms/Fields";
 import { toast } from "react-toastify";
 import Title from "../Components/Title";
 
+// LoginPage component handles user login functionality
 export default function LoginPage({ onLogin }) {
+  // State for storing user credentials
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
 
+  // State for storing any login error messages
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("authToken"); // Retrieve auth token from local storage
 
-  console.log("token at start", token);
-
+  // Function to access admin space after successful login
   function accessAdminSpace() {
     const token = localStorage.getItem("authToken");
-    console.log("token inside function", token);
     fetch("/login", {
+      // Attempt to fetch login endpoint
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // Set Authorization header with token
         "Content-Type": "application/json",
       },
-    }).catch((error) => console.error("Error:", error));
+    }).catch((error) => console.error("Error:", error)); // Catch and log any errors
   }
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await authAPI.authenticate(credentials);
-      console.log("response", response);
-      toast.success("Vous êtes désormais connecté, redirection vers l'espace administrateur, merci de patienter...");
+      const response = await authAPI.authenticate(credentials); // Attempt to authenticate with provided credentials
+      toast.success(
+        "Vous êtes désormais connecté, redirection vers l'espace administrateur, merci de patienter..." // Display success notification
+      );
       setError("");
-      onLogin(true);
-      console.log("token inside try", token);
-      accessAdminSpace();
+      onLogin(true); // Trigger login state change in parent component
+      accessAdminSpace(); // Access admin space
       setTimeout(() => {
-        navigate("/admin", { replace: true });
-      }, 1000); 
+        navigate("/admin", { replace: true }); // Redirect to admin space after a delay
+      }, 1000);
     } catch (error) {
-      setError("Les informations fournies ne sont pas correctes");
-      toast.error("Une erreur est survenue");
+      setError("Les informations fournies ne sont pas correctes"); // Set error message
+      toast.error("Une erreur est survenue"); // Display error notification
     }
   };
 
+  // Handle changes in form fields
   function handleChange(e, param) {
-    setCredentials({ ...credentials, [param]: e.target.value });
+    setCredentials({ ...credentials, [param]: e.target.value }); // Update credentials state based on input
   }
 
+  // Render the login form
   return (
     <div className="container d-flex flex-column">
       <Title text={"Connectez-vous pour accéder à l'espace administration"} />
@@ -61,9 +66,9 @@ export default function LoginPage({ onLogin }) {
           label="Adresse email"
           name="username"
           value={credentials.username}
-          onChange={(e) => handleChange(e, "username")}
-          placeholder="Adresse email de connexion"
-          error={error}
+          onChange={(e) => handleChange(e, "username")} // Update username in state on change
+          placeholder="Adresse email de connexion" // Placeholder text
+          error={error} // Display any errors related to this field
         />
 
         <Fields

@@ -6,7 +6,6 @@ import RealisationDisplay from "../Components/RealisationDisplay";
 import CarouselDisplay from "../Components/CarouselDisplay";
 
 export default function Homepage() {
-  
   return (
     <div className="d-flex justify-content-center align-items-center row ">
       <CarouselDisplay />
