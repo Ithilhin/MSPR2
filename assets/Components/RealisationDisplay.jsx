@@ -40,7 +40,7 @@ export default function RealisationDisplay() {
       >
         {!loading && trios.map((trio, index) => (
           <Carousel.Item className="" key={index} >
-            <div className="d-flex justify-content-around">
+            <div className="d-flex flex-column col-12 align-items-center align-items-lg-start justify-content-lg-around flex-lg-row">
             { trio.map((realisation, realisationIndex) => (
               <RealisationDisplayImages
                 key={realisationIndex}
@@ -49,7 +49,7 @@ export default function RealisationDisplay() {
                 title={realisation.title}
               />
             )) }
-            <div className="col-1"></div>
+            <div className="d-none d-lg-block col-lg-1"></div>
             </div>
           </Carousel.Item>
         ))|| <p>Chargement...</p>}

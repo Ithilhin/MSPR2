@@ -24,8 +24,8 @@ export default function ClientsDisplay() {
       <section id="Clients" className="bg-custom-blue">
         <p className="text-white h1 text-center pt-3">Découvrez nos clients</p>
         <div className="container mt-4">
-          <div className="row d-flex justify-content-center">
-            <div className="d-flex flex-column col-12 justify-content-lg-around flex-lg-row align-items-lg-stretch">
+          <div className="d-flex justify-content-center">
+            <div className="d-flex flex-column col-12 align-items-center justify-content-lg-around flex-lg-row align-items-lg-stretch">
               {!loading &&
                 clients.map((client, index) => (
                   <React.Fragment key={index}>

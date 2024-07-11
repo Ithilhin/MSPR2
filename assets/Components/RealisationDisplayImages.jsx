@@ -10,9 +10,9 @@ export default function RealisationDisplayImages({ src, text, title }) {
             src={src}
             className="card-img-top"
           />
-          <div className="card-body bg-white text-primary">
+          <div className="card-body bg-white text-primary d-flex">
             <h5 className="card-title text-center">{title}</h5>
-            <p className="card-text text-center ">{text}</p>
+            <p className="card-text text-center flex-grow-1">{text}</p>
           </div>
         </div>
       </div>
