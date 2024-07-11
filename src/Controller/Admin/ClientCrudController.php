@@ -38,7 +38,11 @@ class ClientCrudController extends AbstractCrudController
     {
         return [
             TextField::new('Type')->setLabel('Type de client')->setHelp('Example: particulier, professionnel, collectivité'),
-            TextEditorField::new('description')->setLabel('Description')->setHelp('Texte de description du client'),
+            TextEditorField::new('description')->setLabel('Description')->setHelp('Texte de description du client')->onlyOnForms(),
+            TextField::new('description')->setLabel('Description')->setHelp('Texte de description du client')->onlyOnIndex()->formatValue(function ($value) {
+                return $value;
+            }),
+
             BooleanField::new('active')->setLabel('actif')->setHelp('Client actif ou non actif'),
         ];
     }
