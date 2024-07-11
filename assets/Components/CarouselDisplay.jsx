@@ -44,7 +44,7 @@ export default function CarouselDisplay() {
 
       return pairs.map((pair, index) => (
         <Carousel.Item key={index} interval={3000}>
-          <div className="h-400 d-flex justify-content-around align-items-center">
+          <div className="h-400 d-flex justify-content-around align-items-center px-5">
             {pair.map((image, imageIndex) => (
               <CarouselDisplayImages
                 key={imageIndex}
