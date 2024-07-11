@@ -1,13 +1,14 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import {LOGIN_CHECK_API} from "../config";
+import { LOGIN_CHECK_API } from "../config";
 
-
+// Function to remove the authToken from localStorage and delete the Authorization header from axios
 function logout() {
   window.localStorage.removeItem("authToken");
   delete axios.defaults.headers["Authorization"];
 }
 
+// Function to set the Authorization header in axios with the provided token
 function setAxiosToken(token) {
   axios.defaults.headers["Authorization"] = "Bearer " + token; // Setting Authorization header
 }
@@ -28,37 +29,32 @@ function authenticate(credentials) {
   );
 }
 
+// Function to setup axios headers if a valid token exists in localStorage
 function setup() {
-  // 1 voir si on a un token
-
+  // 1. Check if a token exists in localStorage
   const token = window.localStorage.getItem("authToken");
 
-  // 2 si le token est valide
-
+  // 2. If a token exists, decode it to check its validity
   if (token) {
-    const { exp: expiration } = jwtDecode(token);
+    const { exp: expiration } = jwtDecode(token); // Decoding the token to get its expiration
     if (expiration * 1000 > new Date().getTime()) {
-      setAxiosToken(token); // Setting token in axios
-      // console.log("Connexion établie avec le token");
+      setAxiosToken(token); // If the token is valid, set it in axios
     }
   }
 }
 
-function isAuthenticated(){
-  
-  const token = window.localStorage.getItem("authToken");
-  
+// Function to check if the user is authenticated
+function isAuthenticated() {
+  const token = window.localStorage.getItem("authToken"); // Retrieve the token from localStorage
+
   if (token) {
     const { exp: expiration } = jwtDecode(token);
     if (expiration * 1000 > new Date().getTime()) {
-      return true;
+      return true; // If the token is valid, return true
     }
-    return false;
+    return false; // If the token is expired, return false
   }
-  return false;
+  return false; // If no token is found, return false
 }
 
-
-
-// Exporting the authenticate function for use in other parts of the application
 export default { authenticate, logout, setup, isAuthenticated };
